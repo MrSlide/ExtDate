@@ -12,6 +12,35 @@ export default class ExtDate {
   constructor () {
     this._date = new Date(...arguments)
 
+    this._extendDate()
+  }
+
+  _addNativeMethod (methodName) {
+    Object.defineProperty(this, methodName, {
+      value: function () {
+        return this._date[methodName](...arguments)
+      },
+      writable: Date.prototype[methodName].writable,
+      enumerable: Date.prototype[methodName].enumerable,
+      configurable: Date.prototype[methodName].configurable
+    })
+  }
+
+  _addNativeProperty (propName) {
+    Object.defineProperty(this, propName, {
+      get: function (newValue) {
+        return this._date[propName]
+      },
+      set: function (newValue) {
+        this._date[propName] = newValue
+        return newValue
+      },
+      enumerable: Date.prototype[propName].enumerable,
+      configurable: Date.prototype[propName].configurable
+    })
+  }
+
+  _extendDate () {
     const dateProps = Object.getOwnPropertyNames(Date.prototype)
     const propCount = dateProps.length
     let propName
@@ -23,16 +52,10 @@ export default class ExtDate {
         continue
       } else if (typeof Date.prototype[propName] === 'function') {
         this._addNativeMethod(propName)
+      } else {
+        this._addNativeProperty(propName)
       }
     }
-  }
-
-  _addNativeMethod (methodName) {
-    Object.defineProperty(this, methodName, {
-      value: function () {
-        return this._date[methodName](...arguments)
-      }
-    })
   }
 
   static now () {

@@ -37,6 +37,37 @@
 
       this._date = new (Function.prototype.bind.apply(Date, [null].concat(Array.prototype.slice.call(arguments))))();
 
+      this._extendDate();
+    }
+
+    ExtDate.prototype._addNativeMethod = function _addNativeMethod(methodName) {
+      Object.defineProperty(this, methodName, {
+        value: function value() {
+          var _date;
+
+          return (_date = this._date)[methodName].apply(_date, arguments);
+        },
+        writable: Date.prototype[methodName].writable,
+        enumerable: Date.prototype[methodName].enumerable,
+        configurable: Date.prototype[methodName].configurable
+      });
+    };
+
+    ExtDate.prototype._addNativeProperty = function _addNativeProperty(propName) {
+      Object.defineProperty(this, propName, {
+        get: function get(newValue) {
+          return this._date[propName];
+        },
+        set: function set(newValue) {
+          this._date[propName] = newValue;
+          return newValue;
+        },
+        enumerable: Date.prototype[propName].enumerable,
+        configurable: Date.prototype[propName].configurable
+      });
+    };
+
+    ExtDate.prototype._extendDate = function _extendDate() {
       var dateProps = Object.getOwnPropertyNames(Date.prototype);
       var propCount = dateProps.length;
       var propName = void 0;
@@ -48,18 +79,10 @@
           continue;
         } else if (typeof Date.prototype[propName] === 'function') {
           this._addNativeMethod(propName);
+        } else {
+          this._addNativeProperty(propName);
         }
       }
-    }
-
-    ExtDate.prototype._addNativeMethod = function _addNativeMethod(methodName) {
-      Object.defineProperty(this, methodName, {
-        value: function value() {
-          var _date;
-
-          return (_date = this._date)[methodName].apply(_date, arguments);
-        }
-      });
     };
 
     ExtDate.now = function now() {
