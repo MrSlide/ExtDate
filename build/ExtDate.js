@@ -44,7 +44,7 @@
       for (var i = 0; i < propCount; i++) {
         propName = dateProps[i];
 
-        if (typeof this[propName] !== 'undefined' && propName !== 'toLocaleString') {
+        if (typeof this[propName] !== 'undefined' && propName !== 'toLocaleString' && propName !== 'toString') {
           continue;
         } else if (typeof Date.prototype[propName] === 'function') {
           this._addNativeMethod(propName);
