@@ -39,9 +39,10 @@ describe('The ExtDate class', function () {
      */
     it('getDate()', function () {
       const methodName = 'getDate'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -54,9 +55,10 @@ describe('The ExtDate class', function () {
      */
     it('getDay()', function () {
       const methodName = 'getDay'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -69,9 +71,10 @@ describe('The ExtDate class', function () {
      */
     it('getFullYear()', function () {
       const methodName = 'getFullYear'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -84,9 +87,10 @@ describe('The ExtDate class', function () {
      */
     it('getHours()', function () {
       const methodName = 'getHours'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -99,9 +103,10 @@ describe('The ExtDate class', function () {
      */
     it('getMilliseconds()', function () {
       const methodName = 'getMilliseconds'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -114,9 +119,10 @@ describe('The ExtDate class', function () {
      */
     it('getMinutes()', function () {
       const methodName = 'getMinutes'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -129,9 +135,10 @@ describe('The ExtDate class', function () {
      */
     it('getMonth()', function () {
       const methodName = 'getMonth'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -144,9 +151,10 @@ describe('The ExtDate class', function () {
      */
     it('getSeconds()', function () {
       const methodName = 'getSeconds'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -159,9 +167,10 @@ describe('The ExtDate class', function () {
      */
     it('getTime()', function () {
       const methodName = 'getTime'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -174,9 +183,10 @@ describe('The ExtDate class', function () {
      */
     it('getTimezoneOffset()', function () {
       const methodName = 'getTimezoneOffset'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -189,9 +199,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCDate()', function () {
       const methodName = 'getUTCDate'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -204,9 +215,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCDay()', function () {
       const methodName = 'getUTCDay'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -219,9 +231,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCFullYear()', function () {
       const methodName = 'getUTCFullYear'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -234,9 +247,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCHours()', function () {
       const methodName = 'getUTCHours'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -249,9 +263,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCMilliseconds()', function () {
       const methodName = 'getUTCMilliseconds'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -264,9 +279,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCMinutes()', function () {
       const methodName = 'getUTCMinutes'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -279,9 +295,10 @@ describe('The ExtDate class', function () {
      */
     it('getUTCMonth()', function () {
       const methodName = 'getUTCMonth'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
@@ -294,10 +311,266 @@ describe('The ExtDate class', function () {
      */
     it('getUTCSeconds()', function () {
       const methodName = 'getUTCSeconds'
-      const extDate = new ExtDate()
+      const now = Date.now()
+      const extDate = new ExtDate(now)
       const extDateResult = extDate[methodName]()
-      const date = new Date()
+      const date = new Date(now)
       const dateResult = date[methodName]()
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setDate}
+     */
+    it('setDate()', function () {
+      const methodName = 'setDate'
+      const args = [24]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setFullYear}
+     */
+    it('setFullYear()', function () {
+      const methodName = 'setFullYear'
+      const args = [1987, 4, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setHours}
+     */
+    it('setHours()', function () {
+      const methodName = 'setHours'
+      const args = [18, 14, 18, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setMilliseconds}
+     */
+    it('setMilliseconds()', function () {
+      const methodName = 'setMilliseconds'
+      const args = [200]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setMinutes}
+     */
+    it('setMinutes()', function () {
+      const methodName = 'setMinutes'
+      const args = [14, 18, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setMonth}
+     */
+    it('setMonth()', function () {
+      const methodName = 'setMonth'
+      const args = [4, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setSeconds}
+     */
+    it('setSeconds()', function () {
+      const methodName = 'setSeconds'
+      const args = [18, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setTime}
+     */
+    it('setTime()', function () {
+      const methodName = 'setTime'
+      const args = [547979648008]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCDate}
+     */
+    it('setUTCDate()', function () {
+      const methodName = 'setUTCDate'
+      const args = [24]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCFullYear}
+     */
+    it('setUTCFullYear()', function () {
+      const methodName = 'setUTCFullYear'
+      const args = [1987, 4, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCHours}
+     */
+    it('setUTCHours()', function () {
+      const methodName = 'setUTCHours'
+      const args = [18, 14, 18, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCMilliseconds}
+     */
+    it('setUTCMilliseconds()', function () {
+      const methodName = 'setUTCMilliseconds'
+      const args = [200]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCMinutes}
+     */
+    it('setUTCMinutes()', function () {
+      const methodName = 'setUTCMinutes'
+      const args = [14, 18, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCMonth}
+     */
+    it('setUTCMonth()', function () {
+      const methodName = 'setUTCMonth'
+      const args = [4, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#setUTCSeconds}
+     */
+    it('setUTCSeconds()', function () {
+      const methodName = 'setUTCSeconds'
+      const args = [18, 14]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
 
       expect(typeof ExtDate[methodName]).toBe('undefined')
       expect(typeof extDate[methodName]).toBe('function')
