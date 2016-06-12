@@ -31,30 +31,43 @@
     }
   }
 
-  var _createClass = function () {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-      }
-    }
-
-    return function (Constructor, protoProps, staticProps) {
-      if (protoProps) defineProperties(Constructor.prototype, protoProps);
-      if (staticProps) defineProperties(Constructor, staticProps);
-      return Constructor;
-    };
-  }();
-
   var ExtDate = function () {
     function ExtDate() {
       _classCallCheck(this, ExtDate);
 
       this._date = new (Function.prototype.bind.apply(Date, [null].concat(Array.prototype.slice.call(arguments))))();
 
+      this._extendDate();
+    }
+
+    ExtDate.prototype._addNativeMethod = function _addNativeMethod(methodName) {
+      Object.defineProperty(this, methodName, {
+        value: function value() {
+          var _date;
+
+          return (_date = this._date)[methodName].apply(_date, arguments);
+        },
+        writable: Date.prototype[methodName].writable,
+        enumerable: Date.prototype[methodName].enumerable,
+        configurable: Date.prototype[methodName].configurable
+      });
+    };
+
+    ExtDate.prototype._addNativeProperty = function _addNativeProperty(propName) {
+      Object.defineProperty(this, propName, {
+        get: function get(newValue) {
+          return this._date[propName];
+        },
+        set: function set(newValue) {
+          this._date[propName] = newValue;
+          return newValue;
+        },
+        enumerable: Date.prototype[propName].enumerable,
+        configurable: Date.prototype[propName].configurable
+      });
+    };
+
+    ExtDate.prototype._extendDate = function _extendDate() {
       var dateProps = Object.getOwnPropertyNames(Date.prototype);
       var propCount = dateProps.length;
       var propName = void 0;
@@ -62,27 +75,15 @@
       for (var i = 0; i < propCount; i++) {
         propName = dateProps[i];
 
-        if (typeof this[propName] !== 'undefined') {
+        if (propName === 'constructor') {
           continue;
         } else if (typeof Date.prototype[propName] === 'function') {
-          Object.defineProperty(this, propName, {
-            value: function value() {
-              var _date;
-
-              return (_date = this._date)[propName].apply(_date, arguments);
-            }
-          });
-
-          Object.defineProperty(this[propName], 'name', {
-            value: propName
-          });
-
-          Object.defineProperty(this[propName], 'length', {
-            value: this._date[propName].length
-          });
+          this._addNativeMethod(propName);
+        } else {
+          this._addNativeProperty(propName);
         }
       }
-    }
+    };
 
     ExtDate.now = function now() {
       return Date.now.apply(Date, arguments);
@@ -95,18 +96,6 @@
     ExtDate.UTC = function UTC() {
       return Date.UTC.apply(Date, arguments);
     };
-
-    _createClass(ExtDate, [{
-      key: 'length',
-      get: function get() {
-        return Date.length;
-      }
-    }, {
-      key: 'name',
-      get: function get() {
-        return 'ExtDate';
-      }
-    }]);
 
     return ExtDate;
   }();
