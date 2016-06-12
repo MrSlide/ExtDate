@@ -31,24 +31,6 @@
     }
   }
 
-  var _createClass = function () {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-      }
-    }
-
-    return function (Constructor, protoProps, staticProps) {
-      if (protoProps) defineProperties(Constructor.prototype, protoProps);
-      if (staticProps) defineProperties(Constructor, staticProps);
-      return Constructor;
-    };
-  }();
-
   var ExtDate = function () {
     function ExtDate() {
       _classCallCheck(this, ExtDate);
@@ -65,24 +47,20 @@
         if (typeof this[propName] !== 'undefined') {
           continue;
         } else if (typeof Date.prototype[propName] === 'function') {
-          Object.defineProperty(this, propName, {
-            value: function value() {
-              var _date;
-
-              return (_date = this._date)[propName].apply(_date, arguments);
-            }
-          });
-
-          Object.defineProperty(this[propName], 'name', {
-            value: propName
-          });
-
-          Object.defineProperty(this[propName], 'length', {
-            value: this._date[propName].length
-          });
+          this._addNativeMethod(propName);
         }
       }
     }
+
+    ExtDate.prototype._addNativeMethod = function _addNativeMethod(methodName) {
+      Object.defineProperty(this, methodName, {
+        value: function value() {
+          var _date;
+
+          return (_date = this._date)[methodName].apply(_date, arguments);
+        }
+      });
+    };
 
     ExtDate.now = function now() {
       return Date.now.apply(Date, arguments);
@@ -95,18 +73,6 @@
     ExtDate.UTC = function UTC() {
       return Date.UTC.apply(Date, arguments);
     };
-
-    _createClass(ExtDate, [{
-      key: 'length',
-      get: function get() {
-        return Date.length;
-      }
-    }, {
-      key: 'name',
-      get: function get() {
-        return 'ExtDate';
-      }
-    }]);
 
     return ExtDate;
   }();

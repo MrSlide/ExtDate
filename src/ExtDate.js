@@ -22,29 +22,17 @@ export default class ExtDate {
       if (typeof this[propName] !== 'undefined') {
         continue
       } else if (typeof Date.prototype[propName] === 'function') {
-        Object.defineProperty(this, propName, {
-          value: function () {
-            return this._date[propName](...arguments)
-          }
-        })
-
-        Object.defineProperty(this[propName], 'name', {
-          value: propName
-        })
-
-        Object.defineProperty(this[propName], 'length', {
-          value: this._date[propName].length
-        })
+        this._addNativeMethod(propName)
       }
     }
   }
 
-  get length () {
-    return Date.length
-  }
-
-  get name () {
-    return 'ExtDate'
+  _addNativeMethod (methodName) {
+    Object.defineProperty(this, methodName, {
+      value: function () {
+        return this._date[methodName](...arguments)
+      }
+    })
   }
 
   static now () {
