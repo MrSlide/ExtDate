@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '5'
+before_script:
+- npm install phantomjs-prebuilt -g
+- npm install gulp -g
+script:
+- gulp release
+branches:
+  only:
+  - master
+  - develop
+env:
+  global:
+    secure: d9lmqn9X+QYZ+OYYjE7wX4gOGKeJXhYqsxdw0Z4ixt1XQi9xm8iQTuWWD6QV0NMcyyeqfN3qfZ5+Pq9acG3vYq5kUMh1auhsZebBFIeBxbc6n4LjwxMv9C5YnIuE93wa10MbGm1ZhbEDbZDuprPO3zU6R0qsZcITb/SxD8tAyxQ1bE1cL4jyffFHjHLhars7B/5MN5X/YVQfpQnhNN8ofUivbzsPnyDzUpMfYKDBFtX1As1T8/tBThOO4MdaE/okNVrr2WPlcZlXmK/ZVyQyufpKWw1RekZv9QJJ5Rny1xOjoH3atK5BdSfyPiq1N92HbHL9nRS+kGSP0M/rpxcSnFwH+FIO2xxh/FXrcPgJVdsgt2yyAvt4VHY2G50sOY8TOUAxJvgILqGZyAroLppJPqYY6rrVIy/aQH5Rh2pgGOUZGtxiuIEtOTErOirSBcC1KRizM6LTX2SNquQF5EF2akUnHmHc+r5nGgs2J/oT6AtR1wVLcFjRrFIpXrg2Tz6VxEKcsNAr9fi3G7WpwV756Gysrv945bh7v5NtFMRA/mtoecd9jh+7cdQjqg54uovZ6q/TSV7w6EdELOQ6NWrgs3yiMGaxkC5EzN9u+fTpz9cozt2Hz74DLwBT9Gps+pSZ5Ls0M8LEpeQcR20dOqgnU/3KAuKnss3dKeGS5DKh71U=
