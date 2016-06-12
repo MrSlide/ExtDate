@@ -576,6 +576,166 @@ describe('The ExtDate class', function () {
       expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
+
+    /**
+     * @test {ExtDate#toDateString}
+     */
+    it('toDateString()', function () {
+      const methodName = 'toDateString'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toISOString}
+     */
+    it('toISOString()', function () {
+      const methodName = 'toISOString'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toJSON}
+     */
+    it('toJSON()', function () {
+      const methodName = 'toJSON'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toLocaleDateString}
+     */
+    it('toLocaleDateString()', function () {
+      const methodName = 'toLocaleDateString'
+      const args = ['pt-PT', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toLocaleString}
+     */
+    it('toLocaleString()', function () {
+      const methodName = 'toLocaleString'
+      const args = ['pt-PT', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toLocaleTimeString}
+     */
+    it('toLocaleTimeString()', function () {
+      const methodName = 'toLocaleTimeString'
+      const args = ['pt-PT', {timeZone: 'UTC', timeZoneName: 'short'}]
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName].apply(extDate, args)
+      const date = new Date(now)
+      const dateResult = date[methodName].apply(date, args)
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toString}
+     */
+    it('toString()', function () {
+      const methodName = 'toString'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toTimeString}
+     */
+    it('toTimeString()', function () {
+      const methodName = 'toTimeString'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#toUTCString}
+     */
+    it('toUTCString()', function () {
+      const methodName = 'toUTCString'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof ExtDate[methodName]).toBe('undefined')
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
+
+    /**
+     * @test {ExtDate#valueOf}
+     */
+    it('valueOf()', function () {
+      const methodName = 'valueOf'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const extDateResult = extDate[methodName]()
+      const date = new Date(now)
+      const dateResult = date[methodName]()
+
+      expect(typeof extDate[methodName]).toBe('function')
+      expect(extDateResult).toBe(dateResult)
+    })
   })
 })
 
