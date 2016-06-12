@@ -19,11 +19,7 @@ export default class ExtDate {
     for (let i = 0; i < propCount; i++) {
       propName = dateProps[i]
 
-      if (
-        typeof this[propName] !== 'undefined' &&
-        propName !== 'toLocaleString' &&
-        propName !== 'toString'
-      ) {
+      if (propName === 'constructor') {
         continue
       } else if (typeof Date.prototype[propName] === 'function') {
         this._addNativeMethod(propName)
