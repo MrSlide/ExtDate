@@ -2,7 +2,7 @@
   "name": "ext-date",
   "description": "Extends the native Date object with new useful methods.",
   "main": [
-    "build/ext-date.js"
+    "build/ExtDate.js"
   ],
   "moduleType": [
     "globals",
