@@ -25,6 +25,10 @@
  * new ExtDate(1995, 11, 17, 3, 24, 0);
  */
 export default function ExtDate () {
+  if (!(this instanceof ExtDate)) {
+    throw new TypeError('Cannot call a class as a function')
+  }
+
   // Create a Date instance to use internally
   this._date = new Date(...arguments)
 }

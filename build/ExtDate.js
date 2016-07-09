@@ -26,6 +26,10 @@
   });
   exports.default = ExtDate;
   function ExtDate() {
+    if (!(this instanceof ExtDate)) {
+      throw new TypeError('Cannot call a class as a function');
+    }
+
     this._date = new (Function.prototype.bind.apply(Date, [null].concat(Array.prototype.slice.call(arguments))))();
   }
 
@@ -47,13 +51,7 @@
 
     if (!ExtDate[methodName]) {
       fn = function fn() {
-        var returnVal = Date[methodName].apply(Date, arguments);
-
-        if (returnVal instanceof Date) {
-          return new ExtDate(returnVal.getTime());
-        } else {
-          return returnVal;
-        }
+        return Date[methodName].apply(Date, arguments);
       };
 
       copyBaseProps(Date[methodName], fn);
