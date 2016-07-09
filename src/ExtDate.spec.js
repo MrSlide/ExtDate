@@ -7,103 +7,6 @@ import ExtDate from './ExtDate.js'
  * @test {ExtDate}
  */
 describe('The ExtDate class', function () {
-  /**
-   * @test {ExtDate#_addNativeMethod}
-   */
-  it('should be able to add Date methods to its prototype', function () {
-    spyOn(ExtDate.prototype, '_extendDate')
-
-    const extDate = new ExtDate()
-    expect(typeof extDate.setHours).toBe('undefined')
-
-    extDate._addNativeMethod('setHours')
-
-    expect(typeof extDate.setHours).toBe('function')
-
-    spyOn(Date.prototype, 'setHours')
-
-    extDate.setHours(12)
-
-    expect(Date.prototype.setHours).toHaveBeenCalledWith(12)
-  })
-
-  /**
-   * @test {ExtDate#_addNativeProperty}
-   */
-  it('should be able to add Date properties to its prototype', function () {
-    let test = false
-
-    spyOn(ExtDate.prototype, '_extendDate')
-
-    // Currently the Date object does not have properties, so we fake it
-    /* eslint-disable no-extend-native */
-    Object.defineProperty(Date.prototype, 'test', {
-      get: function () {
-        return test
-      },
-      set: function (newValue) {
-        test = newValue
-      },
-      configurable: true
-    })
-    /* eslint-enable no-extend-native */
-
-    const extDate = new ExtDate()
-    expect(typeof extDate.test).toBe('undefined')
-
-    extDate._addNativeProperty('test')
-
-    expect(extDate.test).toBe(false)
-
-    extDate.test = true
-
-    expect(extDate.test).toBe(true)
-
-    delete Date.prototype.test // Return the Date prototype to its original state
-  })
-
-  /**
-   * @test {ExtDate#_extendDate}
-   */
-  it('should be able to extend the Date instance prototype on instantiation', function () {
-    // Currently the Date object does not have properties, so we fake it
-    /* eslint-disable no-extend-native */
-    Object.defineProperty(Date.prototype, 'test', {
-      get: function () {
-        return 'test'
-      },
-      set: function (newValue) {
-        return 'test'
-      },
-      configurable: true
-    })
-    /* eslint-enable no-extend-native */
-
-    const dateProps = Object.getOwnPropertyNames(Date.prototype)
-    const propCount = dateProps.length
-    const propBlacklist = ['toLocaleString', 'toString', 'valueOf', 'constructor']
-    spyOn(ExtDate.prototype, '_extendDate').and.callThrough()
-
-    for (let i = 0; i < propCount; i++) {
-      if (propBlacklist.indexOf(dateProps[i]) > -1) {
-        continue
-      }
-      expect(typeof ExtDate.prototype[dateProps[i]]).toBe('undefined')
-    }
-
-    const extDate = new ExtDate()
-
-    expect(ExtDate.prototype._extendDate).toHaveBeenCalled()
-    for (let i = 0; i < propCount; i++) {
-      if (propBlacklist.indexOf(dateProps[i]) > -1) {
-        continue
-      }
-      expect(typeof extDate[dateProps[i]]).not.toBe('undefined')
-    }
-
-    delete Date.prototype.test // Return the Date prototype to its original state
-  })
-
   describe('should expose native Date static methods', function () {
     /**
      * @test {ExtDate.now}
@@ -142,8 +45,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -158,8 +59,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -174,8 +73,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -190,8 +87,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -206,8 +101,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -222,8 +115,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -238,8 +129,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -254,8 +143,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -270,8 +157,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -286,8 +171,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -302,8 +185,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -318,8 +199,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -334,8 +213,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -350,8 +227,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -366,8 +241,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -382,8 +255,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -398,8 +269,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -414,8 +283,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -431,8 +298,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -448,8 +313,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -465,8 +328,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -482,8 +343,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -499,8 +358,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -516,8 +373,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -533,8 +388,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -550,8 +403,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -567,8 +418,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -584,8 +433,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -601,8 +448,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -618,8 +463,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -635,8 +478,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -652,8 +493,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -669,8 +508,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -685,8 +522,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -701,8 +536,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -717,8 +550,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -734,8 +565,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -751,7 +580,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -767,8 +595,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -783,7 +609,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -798,8 +623,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -814,8 +637,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof ExtDate[methodName]).toBe('undefined')
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
 
@@ -830,7 +651,6 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      expect(typeof extDate[methodName]).toBe('function')
       expect(extDateResult).toBe(dateResult)
     })
   })
