@@ -99,6 +99,24 @@
       this.setTime(this.getTime() + offset);
 
       return this;
+    },
+
+    setWeek: function setWeek(week, year) {
+      var offset = (parseInt(week, 10) - 1) * (msInDay * 7);
+
+      this.setFirstWeekOfYear(year);
+      this.setTime(this.getTime() + offset);
+
+      return this;
+    },
+
+    setUTCWeek: function setUTCWeek(week, year) {
+      var offset = (parseInt(week, 10) - 1) * (msInDay * 7);
+
+      this.setUTCFirstWeekOfYear(year);
+      this.setTime(this.getTime() + offset);
+
+      return this;
     }
   };
 

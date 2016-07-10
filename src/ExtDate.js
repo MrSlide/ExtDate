@@ -136,6 +136,50 @@ const extDateMethods = {
     this.setTime(this.getTime() + offset)
 
     return this
+  },
+
+  /**
+   * Sets the first day of a week number for a specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @param {Number} week - An integer between 1 and 53, representing the week.
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @return {Date}
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setWeek(2, 2016)
+   */
+  setWeek: function setWeek (week, year) {
+    const offset = (parseInt(week, 10) - 1) * (msInDay * 7)
+
+    this.setFirstWeekOfYear(year)
+    this.setTime(this.getTime() + offset)
+
+    return this
+  },
+
+  /**
+   * Sets the first day of a week number for a specified date according to universal time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @param {Number} week - An integer between 1 and 53, representing the week.
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @return {Date}
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setWeek(2, 2016)
+   */
+  setUTCWeek: function setUTCWeek (week, year) {
+    const offset = (parseInt(week, 10) - 1) * (msInDay * 7)
+
+    this.setUTCFirstWeekOfYear(year)
+    this.setTime(this.getTime() + offset)
+
+    return this
   }
 }
 
