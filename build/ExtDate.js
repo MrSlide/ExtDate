@@ -84,7 +84,7 @@
       this.setUTCFirstDayOfYear(year);
       var offset = void 0;
 
-      var day = this.geUTCtDay() - 1;
+      var day = this.getUTCDay() - 1;
 
       if (day < 0) {
         day = 6;

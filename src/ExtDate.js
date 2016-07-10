@@ -119,7 +119,7 @@ const extDateMethods = {
     let offset
 
     // Weeks start on Mondays
-    let day = this.geUTCtDay() - 1
+    let day = this.getUTCDay() - 1
 
     if (day < 0) {
       day = 6
