@@ -844,6 +844,252 @@ describe('The ExtDate class', function () {
     })
   })
 
+  describe('own instance method', function () {
+    it('setFirstDayOfYear() should be able to set the date for the first day of a given year according to local time', function () {
+      const methodName = 'setFirstDayOfYear'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const yearsToTest = [
+        false,
+        1970,
+        1996,
+        2000,
+        2010,
+        2011,
+        2012,
+        2015,
+        2020
+      ]
+
+      let currentDate
+      let yearResult
+      let monthResult
+      let dayResult
+
+      yearsToTest.forEach(function (currentYear) {
+        currentDate = extDate[methodName](currentYear)
+        yearResult = currentDate.getFullYear()
+        monthResult = currentDate.getMonth()
+        dayResult = currentDate.getDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe((currentYear || (new Date(now)).getFullYear()) + '-1-1')
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setUTCFirstDayOfYear() should be able to set the date for the first day of a given year according to universal time', function () {
+      const methodName = 'setUTCFirstDayOfYear'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const yearsToTest = [
+        false,
+        1970,
+        1996,
+        2000,
+        2010,
+        2011,
+        2012,
+        2015,
+        2020
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      yearsToTest.forEach(function (currentYear) {
+        extDate[methodName](currentYear)
+
+        yearResult = extDate.getUTCFullYear()
+        monthResult = extDate.getUTCMonth()
+        dayResult = extDate.getUTCDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe((currentYear || (new Date(now)).getUTCFullYear()) + '-1-1')
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setFirstWeekOfYear() should be able to set the date for the first week of a given year according to local time', function () {
+      const methodName = 'setFirstWeekOfYear'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const yearsToTest = [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ]
+      const yearFirstWeeks = [
+        '2010-1-4',
+        '2011-1-3',
+        '2012-1-2',
+        '2012-12-31',
+        '2013-12-30',
+        '2014-12-29',
+        '2016-1-4',
+        '2017-1-2',
+        '2018-1-1',
+        '2018-12-31',
+        '2019-12-30'
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      yearsToTest.forEach(function (currentYear, i) {
+        extDate[methodName](currentYear)
+
+        yearResult = extDate.getFullYear()
+        monthResult = extDate.getMonth()
+        dayResult = extDate.getDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearFirstWeeks[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setUTCFirstWeekOfYear() should be able to set the date for the first week of a given year according to universal time', function () {
+      const methodName = 'setUTCFirstWeekOfYear'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const yearsToTest = [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ]
+      const yearFirstWeeks = [
+        '2010-1-4',
+        '2011-1-3',
+        '2012-1-2',
+        '2012-12-31',
+        '2013-12-30',
+        '2014-12-29',
+        '2016-1-4',
+        '2017-1-2',
+        '2018-1-1',
+        '2018-12-31',
+        '2019-12-30'
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      yearsToTest.forEach(function (currentYear, i) {
+        extDate[methodName](currentYear)
+
+        yearResult = extDate.getUTCFullYear()
+        monthResult = extDate.getUTCMonth()
+        dayResult = extDate.getUTCDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearFirstWeeks[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setWeek() should be able to set the date for the first week of a given year according to local time', function () {
+      const methodName = 'setWeek'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const yearsToTest = [
+        {
+          year: 1996,
+          week: '16'
+        },
+        {
+          year: 2015,
+          week: '01'
+        },
+        {
+          year: 2015,
+          week: '53'
+        }
+      ]
+      const yearWeeks = [
+        '1996-4-15',
+        '2014-12-29',
+        '2015-12-28'
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      yearsToTest.forEach(function (currentCombo, i) {
+        extDate[methodName](currentCombo.week, currentCombo.year)
+
+        yearResult = extDate.getFullYear()
+        monthResult = extDate.getMonth()
+        dayResult = extDate.getDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearWeeks[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setUTCWeek() should be able to set the date for the first week of a given year according to universal time', function () {
+      const methodName = 'setUTCWeek'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const yearsToTest = [
+        {
+          year: 1996,
+          week: '16'
+        },
+        {
+          year: 2015,
+          week: '01'
+        },
+        {
+          year: 2015,
+          week: '53'
+        }
+      ]
+      const yearWeeks = [
+        '1996-4-15',
+        '2014-12-29',
+        '2015-12-28'
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      yearsToTest.forEach(function (currentCombo, i) {
+        extDate[methodName](currentCombo.week, currentCombo.year)
+
+        yearResult = extDate.getUTCFullYear()
+        monthResult = extDate.getUTCMonth()
+        dayResult = extDate.getUTCDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearWeeks[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+  })
+
   it('should have all of its own instance methods tested', function () {
     const extDateInstance = new ExtDate()
     const ownInstanceProps = Object.getOwnPropertyNames(extDateInstance)
