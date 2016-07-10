@@ -25,6 +25,9 @@
     value: true
   });
   exports.default = ExtDate;
+
+  var msInDay = 86400000;
+
   var extDateMethods = {
     setFirstDayOfYear: function setFirstDayOfYear(year) {
       this.setMilliseconds(0);
@@ -52,6 +55,48 @@
       if (year) {
         this.setUTCFullYear(year);
       }
+
+      return this;
+    },
+
+    setFirstWeekOfYear: function setFirstWeekOfYear(year) {
+      this.setFirstDayOfYear(year);
+      var offset = void 0;
+
+      var day = this.getDay() - 1;
+
+      if (day < 0) {
+        day = 6;
+      }
+
+      if (day > 3) {
+        offset = (7 - day) * msInDay;
+      } else {
+        offset = -day * msInDay;
+      }
+
+      this.setTime(this.getTime() + offset);
+
+      return this;
+    },
+
+    setUTCFirstWeekOfYear: function setUTCFirstWeekOfYear(year) {
+      this.setUTCFirstDayOfYear(year);
+      var offset = void 0;
+
+      var day = this.geUTCtDay() - 1;
+
+      if (day < 0) {
+        day = 6;
+      }
+
+      if (day > 3) {
+        offset = (7 - day) * msInDay;
+      } else {
+        offset = -day * msInDay;
+      }
+
+      this.setTime(this.getTime() + offset);
 
       return this;
     }

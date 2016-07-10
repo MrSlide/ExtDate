@@ -8,6 +8,9 @@
  * @license MIT
  */
 
+// Number of milliseconds in a single day
+const msInDay = 86400000
+
 const extDateMethods = {
   /**
    * Sets the first day of the year for a specified date according to local time.
@@ -59,6 +62,78 @@ const extDateMethods = {
     if (year) {
       this.setUTCFullYear(year)
     }
+
+    return this
+  },
+
+  /**
+   * Sets the first day of the first week of the year for a specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @return {Date}
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setFirstWeekOfYear(2016)
+   */
+  setFirstWeekOfYear: function setFirstWeekOfYear (year) {
+    this.setFirstDayOfYear(year)
+    let offset
+
+    // Weeks start on Mondays
+    let day = this.getDay() - 1
+
+    if (day < 0) {
+      day = 6
+    }
+
+    // The first week of the year must include the 4th of January
+    if (day > 3) {
+      offset = (7 - day) * msInDay
+    } else {
+      offset = -day * msInDay
+    }
+
+    // Adjust the date with the calculated offset
+    this.setTime(this.getTime() + offset)
+
+    return this
+  },
+
+  /**
+   * Sets the first day of the first week of the year for a specified date according to universal time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @return {Date}
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setUTCFirstWeekOfYear(2016)
+   */
+  setUTCFirstWeekOfYear: function setUTCFirstWeekOfYear (year) {
+    this.setUTCFirstDayOfYear(year)
+    let offset
+
+    // Weeks start on Mondays
+    let day = this.geUTCtDay() - 1
+
+    if (day < 0) {
+      day = 6
+    }
+
+    // The first week of the year must include the 4th of January
+    if (day > 3) {
+      offset = (7 - day) * msInDay
+    } else {
+      offset = -day * msInDay
+    }
+
+    // Adjust the date with the calculated offset
+    this.setTime(this.getTime() + offset)
 
     return this
   }
