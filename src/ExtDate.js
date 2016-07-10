@@ -195,7 +195,12 @@ function extend (src, dest) {
   const keys = Object.keys(src)
 
   keys.forEach(function (prop) {
-    dest[prop] = src[prop]
+    Object.defineProperty(dest, prop, {
+      value: src[prop],
+      enumerable: false,
+      configurable: false,
+      writable: false
+    })
   })
 
   return dest
@@ -238,6 +243,11 @@ const staticProps = Object.getOwnPropertyNames(Date)
 
 staticProps.forEach(function (prop) {
   if (typeof Date[prop] === 'function') {
-    ExtDate[prop] = Date[prop]
+    Object.defineProperty(ExtDate, prop, {
+      value: Date[prop],
+      enumerable: false,
+      configurable: false,
+      writable: false
+    })
   }
 })

@@ -7,7 +7,11 @@ import ExtDate from './ExtDate.js'
  * @test {ExtDate}
  */
 describe('The ExtDate class', function () {
-  const testedMethods = {
+  const testedNativeMethods = {
+    proto: {}
+  }
+
+  const testedOwnMethods = {
     proto: {}
   }
 
@@ -26,7 +30,7 @@ describe('The ExtDate class', function () {
     it('now()', function () {
       const methodName = 'now'
 
-      testedMethods[methodName] = true
+      testedNativeMethods[methodName] = true
 
       expect(typeof ExtDate[methodName]).toBe('function')
       expect(ExtDate[methodName]()).toBe(Date[methodName]())
@@ -38,7 +42,7 @@ describe('The ExtDate class', function () {
     it('parse()', function () {
       const methodName = 'parse'
 
-      testedMethods[methodName] = true
+      testedNativeMethods[methodName] = true
 
       expect(typeof ExtDate[methodName]).toBe('function')
       expect(ExtDate[methodName]('Wed, 09 Aug 1995 00:00:00 GMT')).toBe(Date[methodName]('Wed, 09 Aug 1995 00:00:00 GMT'))
@@ -50,7 +54,7 @@ describe('The ExtDate class', function () {
     it('UTC()', function () {
       const methodName = 'UTC'
 
-      testedMethods[methodName] = true
+      testedNativeMethods[methodName] = true
 
       expect(typeof ExtDate[methodName]).toBe('function')
       expect(ExtDate[methodName](96, 11, 1, 0, 0, 0)).toBe(Date[methodName](96, 11, 1, 0, 0, 0))
@@ -62,7 +66,7 @@ describe('The ExtDate class', function () {
 
     staticProps.forEach(function (prop) {
       if (typeof Date[prop] === 'function') {
-        expect(testedMethods[prop]).toBe(true)
+        expect(testedNativeMethods[prop]).toBe(true)
       }
     })
   })
@@ -79,7 +83,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -95,7 +99,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -111,7 +115,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -128,7 +132,7 @@ describe('The ExtDate class', function () {
         const date = new Date(now)
         const dateResult = date[methodName]()
 
-        testedMethods.proto[methodName] = true
+        testedNativeMethods.proto[methodName] = true
 
         expect(extDateResult).toBe(dateResult)
       })
@@ -145,7 +149,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -161,7 +165,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -177,7 +181,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -193,7 +197,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -209,7 +213,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -225,7 +229,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -241,7 +245,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -257,7 +261,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -273,7 +277,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -289,7 +293,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -305,7 +309,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -321,7 +325,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -337,7 +341,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -353,7 +357,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -369,7 +373,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -386,7 +390,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -403,7 +407,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -421,7 +425,7 @@ describe('The ExtDate class', function () {
         const date = new Date(now)
         const dateResult = date[methodName].apply(date, args)
 
-        testedMethods.proto[methodName] = true
+        testedNativeMethods.proto[methodName] = true
 
         expect(extDateResult).toBe(dateResult)
       })
@@ -439,7 +443,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -456,7 +460,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -473,7 +477,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -490,7 +494,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -507,7 +511,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -524,7 +528,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -541,7 +545,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -558,7 +562,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -575,7 +579,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -592,7 +596,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -609,7 +613,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -626,7 +630,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -643,7 +647,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -659,7 +663,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -675,7 +679,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -691,7 +695,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -708,7 +712,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -725,7 +729,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -742,7 +746,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName].apply(date, args)
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -758,7 +762,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -775,7 +779,7 @@ describe('The ExtDate class', function () {
         const date = new Date(now)
         const dateResult = date[methodName]()
 
-        testedMethods.proto[methodName] = true
+        testedNativeMethods.proto[methodName] = true
 
         expect(extDateResult).toBe(dateResult)
       })
@@ -792,7 +796,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -808,7 +812,7 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
@@ -824,18 +828,29 @@ describe('The ExtDate class', function () {
       const date = new Date(now)
       const dateResult = date[methodName]()
 
-      testedMethods.proto[methodName] = true
+      testedNativeMethods.proto[methodName] = true
 
       expect(extDateResult).toBe(dateResult)
     })
   })
 
   it('should have all the native instance methods tested', function () {
-    const staticProps = Object.getOwnPropertyNames(Date.prototype)
+    const instanceProps = Object.getOwnPropertyNames(Date.prototype)
 
-    staticProps.forEach(function (prop) {
+    instanceProps.forEach(function (prop) {
       if (typeof Date.prototype[prop] === 'function' && prop !== 'constructor') {
-        expect(testedMethods.proto[prop]).toBe(true)
+        expect(testedNativeMethods.proto[prop]).toBe(true)
+      }
+    })
+  })
+
+  it('should have all of its own instance methods tested', function () {
+    const extDateInstance = new ExtDate()
+    const ownInstanceProps = Object.getOwnPropertyNames(extDateInstance)
+
+    ownInstanceProps.forEach(function (prop) {
+      if (typeof extDateInstance[prop] === 'function') {
+        expect(testedOwnMethods.proto[prop]).toBe(true)
       }
     })
   })
