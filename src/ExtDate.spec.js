@@ -11,6 +11,14 @@ describe('The ExtDate class', function () {
     proto: {}
   }
 
+  it('should return a string representation of the current time when called as a function', function () {
+    const now = Date.now()
+    const extDateResult = ExtDate(now)
+    const dateResult = Date(now)
+
+    expect(extDateResult).toBe(dateResult)
+  })
+
   describe('should expose native Date static methods', function () {
     /**
      * @test {ExtDate.now}

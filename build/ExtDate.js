@@ -25,72 +25,22 @@
     value: true
   });
   exports.default = ExtDate;
-  function ExtDate() {
+  function ExtDate(year, month, day, hour, minutes, seconds, milliseconds) {
     if (!(this instanceof ExtDate)) {
       throw new TypeError('Cannot call a class as a function');
     }
 
-    this._date = new (Function.prototype.bind.apply(Date, [null].concat(Array.prototype.slice.call(arguments))))();
+    var date = new (Function.prototype.bind.apply(Date, [null].concat(Array.prototype.slice.call(arguments))))();
+
+    return date;
   }
 
-  function copyBaseProps(src, dest) {
-    try {
-      Object.defineProperty(dest, 'name', { value: src.name });
-      Object.defineProperty(dest, 'length', { value: src.length });
-    } catch (err) {}
-  }
+  var staticProps = Object.getOwnPropertyNames(Date);
 
-  function addStaticMethod(methodName) {
-    var force = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
-
-    if (typeof Date[methodName] !== 'function') {
-      return;
+  staticProps.forEach(function (prop) {
+    if (typeof Date[prop] === 'function') {
+      ExtDate[prop] = Date[prop];
     }
-
-    var fn = void 0;
-
-    if (!ExtDate[methodName]) {
-      fn = function fn() {
-        return Date[methodName].apply(Date, arguments);
-      };
-
-      copyBaseProps(Date[methodName], fn);
-
-      ExtDate[methodName] = fn;
-    }
-  }
-
-  function addMethod(methodName) {
-    var force = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
-
-    if (typeof Date.prototype[methodName] !== 'function') {
-      return;
-    }
-
-    var fn = void 0;
-
-    if (!ExtDate.prototype[methodName] || force) {
-      fn = function fn() {
-        return this._date[methodName].apply(this._date, arguments);
-      };
-
-      copyBaseProps(Date.prototype[methodName], fn);
-
-      ExtDate.prototype[methodName] = fn;
-    }
-  }
-
-  Object.getOwnPropertyNames(Date).forEach(function (prop) {
-    addStaticMethod(prop);
   });
-
-  Object.getOwnPropertyNames(Date.prototype).forEach(function (prop) {
-    addMethod(prop);
-  });
-
-  addMethod('toLocaleString', true);
-  addMethod('toSource', true);
-  addMethod('toString', true);
-  addMethod('valueOf', true);
 });
 //# sourceMappingURL=ExtDate.js.map
