@@ -10,5 +10,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-[Latest]: https://github.com/MrSlide/extended-date/tree/master
-[Unreleased]: https://github.com/MrSlide/extended-date/tree/develop
+[Latest]: https://github.com/MrSlide/ExtDate/tree/master
+[Unreleased]: https://github.com/MrSlide/ExtDate/tree/develop
