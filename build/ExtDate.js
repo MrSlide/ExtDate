@@ -73,6 +73,38 @@
       return this.getTime();
     },
 
+    getDayOfYear: function getDayOfYear() {
+      var helperDate = new Date(this.getTime());
+
+      var dayCount = helperDate.getDate();
+      var i = helperDate.getMonth();
+
+      while (i > 0) {
+        helperDate.setDate(0);
+        dayCount += helperDate.getDate();
+
+        i--;
+      }
+
+      return dayCount;
+    },
+
+    getUTCDayOfYear: function getUTCDayOfYear() {
+      var helperDate = new Date(this.getTime());
+
+      var dayCount = helperDate.getUTCDate();
+      var i = helperDate.getUTCMonth();
+
+      while (i > 0) {
+        helperDate.setUTCDate(0);
+        dayCount += helperDate.getUTCDate();
+
+        i--;
+      }
+
+      return dayCount;
+    },
+
     setDayOfYear: function setDayOfYear(day, year) {
       if (year) {
         this.setFullYear(year);

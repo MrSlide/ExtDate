@@ -103,12 +103,67 @@ const extDateMethods = {
   },
 
   /**
+   * Returns the day of the year for a specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @return {Number} - The day of the year for the specified date.
+   * @since 0.1.0
+   *
+   * @example
+   * var dayfOfYear = dateInstance.getDayOfYear()
+   */
+  getDayOfYear: function getDayOfYear () {
+    const helperDate = new Date(this.getTime())
+
+    let dayCount = helperDate.getDate()
+    let i = helperDate.getMonth()
+
+    while (i > 0) {
+      helperDate.setDate(0)
+      dayCount += helperDate.getDate()
+
+      i--
+    }
+
+    return dayCount
+  },
+
+  /**
+   * Returns the day of the year for a specified date according to universal time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @return {Number} - The day of the year for the specified date.
+   * @since 0.1.0
+   *
+   * @example
+   * var dayfOfYear = dateInstance.getUTCDayOfYear()
+   */
+  getUTCDayOfYear: function getUTCDayOfYear () {
+    const helperDate = new Date(this.getTime())
+
+    let dayCount = helperDate.getUTCDate()
+    let i = helperDate.getUTCMonth()
+
+    while (i > 0) {
+      helperDate.setUTCDate(0)
+      dayCount += helperDate.getUTCDate()
+
+      i--
+    }
+
+    return dayCount
+  },
+
+  /**
    * Sets the day of the year for a specified date according to local time.
    *
    * @memberof ExtDate
    * @public
    * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -132,6 +187,7 @@ const extDateMethods = {
    * @public
    * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
