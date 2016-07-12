@@ -152,10 +152,10 @@ const extDateMethods = {
    * dateInstance.setWeek(2, 2016)
    */
   setWeek: function setWeek (week, year) {
-    const offset = (parseInt(week, 10) - 1) * (msInDay * 7)
+    const offset = (week - 1) * 7
 
     this.setFirstWeekOfYear(year)
-    this.setTime(this.getTime() + offset)
+    this.setDate(this.getDate() + offset)
 
     return this
   },
@@ -174,10 +174,10 @@ const extDateMethods = {
    * dateInstance.setWeek(2, 2016)
    */
   setUTCWeek: function setUTCWeek (week, year) {
-    const offset = (parseInt(week, 10) - 1) * (msInDay * 7)
+    const offset = (week - 1) * 7
 
     this.setUTCFirstWeekOfYear(year)
-    this.setTime(this.getTime() + offset)
+    this.setUTCDate(this.getUTCDate() + offset)
 
     return this
   }
