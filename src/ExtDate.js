@@ -17,7 +17,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -29,7 +29,7 @@ const extDateMethods = {
     this.setMinutes(0)
     this.setHours(0)
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -37,7 +37,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -49,7 +49,7 @@ const extDateMethods = {
     this.setUTCMinutes(0)
     this.setUTCHours(0)
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -58,7 +58,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -74,7 +74,7 @@ const extDateMethods = {
       this.setFullYear(year)
     }
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -83,7 +83,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -99,7 +99,7 @@ const extDateMethods = {
       this.setUTCFullYear(year)
     }
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -108,7 +108,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -135,7 +135,7 @@ const extDateMethods = {
     // Adjust the date with the calculated offset
     this.setTime(this.getTime() + offset)
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -144,7 +144,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -171,7 +171,7 @@ const extDateMethods = {
     // Adjust the date with the calculated offset
     this.setTime(this.getTime() + offset)
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -181,7 +181,7 @@ const extDateMethods = {
    * @public
    * @param {Number} week - An integer between 1 and 53, representing the week.
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -193,7 +193,7 @@ const extDateMethods = {
     this.setFirstWeekOfYear(year)
     this.setDate(this.getDate() + offset)
 
-    return this
+    return this.getTime()
   },
 
   /**
@@ -203,7 +203,7 @@ const extDateMethods = {
    * @public
    * @param {Number} week - An integer between 1 and 53, representing the week.
    * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
-   * @return {Date}
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
    * @example
@@ -215,7 +215,7 @@ const extDateMethods = {
     this.setUTCFirstWeekOfYear(year)
     this.setUTCDate(this.getUTCDate() + offset)
 
-    return this
+    return this.getTime()
   }
 }
 

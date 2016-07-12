@@ -35,7 +35,7 @@
       this.setMinutes(0);
       this.setHours(0);
 
-      return this;
+      return this.getTime();
     },
 
     setUTCStartOfDay: function setUTCStartOfDay() {
@@ -44,7 +44,7 @@
       this.setUTCMinutes(0);
       this.setUTCHours(0);
 
-      return this;
+      return this.getTime();
     },
 
     setFirstDayOfYear: function setFirstDayOfYear(year) {
@@ -57,7 +57,7 @@
         this.setFullYear(year);
       }
 
-      return this;
+      return this.getTime();
     },
 
     setUTCFirstDayOfYear: function setUTCFirstDayOfYear(year) {
@@ -70,7 +70,7 @@
         this.setUTCFullYear(year);
       }
 
-      return this;
+      return this.getTime();
     },
 
     setFirstWeekOfYear: function setFirstWeekOfYear(year) {
@@ -91,7 +91,7 @@
 
       this.setTime(this.getTime() + offset);
 
-      return this;
+      return this.getTime();
     },
 
     setUTCFirstWeekOfYear: function setUTCFirstWeekOfYear(year) {
@@ -112,7 +112,7 @@
 
       this.setTime(this.getTime() + offset);
 
-      return this;
+      return this.getTime();
     },
 
     setWeek: function setWeek(week, year) {
@@ -121,7 +121,7 @@
       this.setFirstWeekOfYear(year);
       this.setDate(this.getDate() + offset);
 
-      return this;
+      return this.getTime();
     },
 
     setUTCWeek: function setUTCWeek(week, year) {
@@ -130,7 +130,7 @@
       this.setUTCFirstWeekOfYear(year);
       this.setUTCDate(this.getUTCDate() + offset);
 
-      return this;
+      return this.getTime();
     }
   };
 
