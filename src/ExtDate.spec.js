@@ -885,16 +885,15 @@ describe('The ExtDate class', function () {
         2020
       ]
 
-      let currentDate
       let yearResult
       let monthResult
       let dayResult
 
       yearsToTest.forEach(function (currentYear) {
-        currentDate = extDate[methodName](currentYear)
-        yearResult = currentDate.getFullYear()
-        monthResult = currentDate.getMonth()
-        dayResult = currentDate.getDate()
+        extDate[methodName](currentYear)
+        yearResult = extDate.getFullYear()
+        monthResult = extDate.getMonth()
+        dayResult = extDate.getDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe((currentYear || (new Date(now)).getFullYear()) + '-1-1')
       })
@@ -930,6 +929,96 @@ describe('The ExtDate class', function () {
         dayResult = extDate.getUTCDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe((currentYear || (new Date(now)).getUTCFullYear()) + '-1-1')
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setDayOfYear() should be able to set the date the given day of the year according to local time', function () {
+      const methodName = 'setDayOfYear'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const daysToTest = [
+        {
+          year: false,
+          day: '1'
+        },
+        {
+          year: 1996,
+          day: '16'
+        },
+        {
+          year: 2016,
+          day: '194'
+        },
+        {
+          year: 1987,
+          day: '53'
+        }
+      ]
+      const daysOfYear = [
+        (new Date()).getFullYear() + '-1-1',
+        '1996-1-16',
+        '2016-7-12',
+        '1987-2-22'
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      daysToTest.forEach(function (currentCombo, i) {
+        extDate[methodName](currentCombo.day, currentCombo.year)
+        yearResult = extDate.getFullYear()
+        monthResult = extDate.getMonth()
+        dayResult = extDate.getDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(daysOfYear[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setUTCDayOfYear() should be able to set the date the given day of the year according to local time', function () {
+      const methodName = 'setUTCDayOfYear'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+      const daysToTest = [
+        {
+          year: false,
+          day: '1'
+        },
+        {
+          year: 1996,
+          day: '16'
+        },
+        {
+          year: 2016,
+          day: '194'
+        },
+        {
+          year: 1987,
+          day: '53'
+        }
+      ]
+      const daysOfYear = [
+        (new Date()).getUTCFullYear() + '-1-1',
+        '1996-1-16',
+        '2016-7-12',
+        '1987-2-22'
+      ]
+
+      let yearResult
+      let monthResult
+      let dayResult
+
+      daysToTest.forEach(function (currentCombo, i) {
+        extDate[methodName](currentCombo.day, currentCombo.year)
+        yearResult = extDate.getUTCFullYear()
+        monthResult = extDate.getUTCMonth()
+        dayResult = extDate.getUTCDate()
+
+        expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(daysOfYear[i])
       })
 
       testedOwnMethods.proto[methodName] = true

@@ -73,6 +73,28 @@
       return this.getTime();
     },
 
+    setDayOfYear: function setDayOfYear(day, year) {
+      if (year) {
+        this.setFullYear(year);
+      }
+
+      this.setFirstDayOfYear();
+      this.setDate(day);
+
+      return this.getTime();
+    },
+
+    setUTCDayOfYear: function setUTCDayOfYear(day, year) {
+      if (year) {
+        this.setUTCFullYear(year);
+      }
+
+      this.setUTCFirstDayOfYear();
+      this.setUTCDate(day);
+
+      return this.getTime();
+    },
+
     setFirstWeekOfYear: function setFirstWeekOfYear(year) {
       this.setFirstDayOfYear(year);
       var offset = void 0;

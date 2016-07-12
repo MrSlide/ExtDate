@@ -103,6 +103,52 @@ const extDateMethods = {
   },
 
   /**
+   * Sets the day of the year for a specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setDayOfYear(45, 2016)
+   */
+  setDayOfYear: function setDayOfYear (day, year) {
+    if (year) {
+      this.setFullYear(year)
+    }
+
+    this.setFirstDayOfYear()
+    this.setDate(day)
+
+    return this.getTime()
+  },
+
+  /**
+   * Sets the day of the year for a specified date according to universal time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setUTCDayOfYear(45, 2016)
+   */
+  setUTCDayOfYear: function setUTCDayOfYear (day, year) {
+    if (year) {
+      this.setUTCFullYear(year)
+    }
+
+    this.setUTCFirstDayOfYear()
+    this.setUTCDate(day)
+
+    return this.getTime()
+  },
+
+  /**
    * Sets the first day of the first week of the year for a specified date according to local time.
    *
    * @memberof ExtDate
