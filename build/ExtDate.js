@@ -29,11 +29,27 @@
   var msInDay = 86400000;
 
   var extDateMethods = {
-    setFirstDayOfYear: function setFirstDayOfYear(year) {
+    setStartOfDay: function setStartOfDay() {
       this.setMilliseconds(0);
       this.setSeconds(0);
       this.setMinutes(0);
       this.setHours(0);
+
+      return this;
+    },
+
+    setUTCStartOfDay: function setUTCStartOfDay() {
+      this.setUTCMilliseconds(0);
+      this.setUTCSeconds(0);
+      this.setUTCMinutes(0);
+      this.setUTCHours(0);
+
+      return this;
+    },
+
+    setFirstDayOfYear: function setFirstDayOfYear(year) {
+      this.setStartOfDay();
+
       this.setDate(1);
       this.setMonth(0);
 
@@ -45,10 +61,8 @@
     },
 
     setUTCFirstDayOfYear: function setUTCFirstDayOfYear(year) {
-      this.setUTCMilliseconds(0);
-      this.setUTCSeconds(0);
-      this.setUTCMinutes(0);
-      this.setUTCHours(0);
+      this.setUTCStartOfDay();
+
       this.setUTCDate(1);
       this.setUTCMonth(0);
 

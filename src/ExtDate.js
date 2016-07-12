@@ -13,6 +13,46 @@ const msInDay = 86400000
 
 const extDateMethods = {
   /**
+   * Sets the time of the day to 00:00:00.000 for a specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @return {Date}
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setStartOfDay()
+   */
+  setStartOfDay: function setStartOfDay () {
+    this.setMilliseconds(0)
+    this.setSeconds(0)
+    this.setMinutes(0)
+    this.setHours(0)
+
+    return this
+  },
+
+  /**
+   * Sets the time of the day to 00:00:00.000 for a specified date according to universal time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @return {Date}
+   * @since 0.1.0
+   *
+   * @example
+   * dateInstance.setUTCStartOfDay()
+   */
+  setUTCStartOfDay: function setUTCStartOfDay () {
+    this.setUTCMilliseconds(0)
+    this.setUTCSeconds(0)
+    this.setUTCMinutes(0)
+    this.setUTCHours(0)
+
+    return this
+  },
+
+  /**
    * Sets the first day of the year for a specified date according to local time.
    *
    * @memberof ExtDate
@@ -25,10 +65,8 @@ const extDateMethods = {
    * dateInstance.setFirstDayOfYear(2016)
    */
   setFirstDayOfYear: function setFirstDayOfYear (year) {
-    this.setMilliseconds(0)
-    this.setSeconds(0)
-    this.setMinutes(0)
-    this.setHours(0)
+    this.setStartOfDay()
+
     this.setDate(1)
     this.setMonth(0)
 
@@ -52,10 +90,8 @@ const extDateMethods = {
    * dateInstance.setUTCFirstDayOfYear(2016)
    */
   setUTCFirstDayOfYear: function setUTCFirstDayOfYear (year) {
-    this.setUTCMilliseconds(0)
-    this.setUTCSeconds(0)
-    this.setUTCMinutes(0)
-    this.setUTCHours(0)
+    this.setUTCStartOfDay()
+
     this.setUTCDate(1)
     this.setUTCMonth(0)
 
@@ -171,7 +207,7 @@ const extDateMethods = {
    * @since 0.1.0
    *
    * @example
-   * dateInstance.setWeek(2, 2016)
+   * dateInstance.setUTCWeek(2, 2016)
    */
   setUTCWeek: function setUTCWeek (week, year) {
     const offset = (week - 1) * 7

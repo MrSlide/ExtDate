@@ -845,6 +845,30 @@ describe('The ExtDate class', function () {
   })
 
   describe('own instance method', function () {
+    it('setStartOfDay() should be able to set the time of the day to 00:00:00.000 according to local time', function () {
+      const methodName = 'setStartOfDay'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+
+      extDate[methodName]()
+
+      expect(extDate.getHours() + ':' + extDate.getMinutes() + ':' + extDate.getSeconds() + '.' + extDate.getMilliseconds()).toBe('0:0:0.0')
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('setUTCStartOfDay() should be able to set the time of the day to 00:00:00.000 according to local time', function () {
+      const methodName = 'setUTCStartOfDay'
+      const now = Date.now()
+      const extDate = new ExtDate(now)
+
+      extDate[methodName]()
+
+      expect(extDate.getUTCHours() + ':' + extDate.getUTCMinutes() + ':' + extDate.getUTCSeconds() + '.' + extDate.getUTCMilliseconds()).toBe('0:0:0.0')
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
     it('setFirstDayOfYear() should be able to set the date for the first day of a given year according to local time', function () {
       const methodName = 'setFirstDayOfYear'
       const now = Date.now()
