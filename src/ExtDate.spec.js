@@ -1201,6 +1201,82 @@ describe('The ExtDate class', function () {
 
       testedOwnMethods.proto[methodName] = true
     })
+
+    it('getWeek() should be able to get the week number of the date according to local time', function () {
+      const methodName = 'getWeek'
+      const datesToTest = [
+        '1995-12-17T03:24:00',
+        '2016-07-10T00:00:00',
+        '2016-07-16T23:59:59',
+        '2014-12-29T22:24:30',
+        '1996-04-15T02:53:13',
+        '2018-01-08T10:02:24',
+        '2013-02-13T13:24:42',
+        '2017-01-02T17:37:51',
+        '2017-01-09T17:15:46',
+        '2017-01-09T00:00:00',
+        '2017-01-09T23:59:59'
+      ]
+      const weekNumbers = [
+        50,
+        27,
+        28,
+        1,
+        16,
+        2,
+        7,
+        1,
+        2,
+        2,
+        2
+      ]
+
+      datesToTest.forEach(function (currentDate, i) {
+        const date = new ExtDate(currentDate)
+
+        expect(date[methodName]()).toBe(weekNumbers[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('getUTCWeek() should be able to get the week number of the date according to universal time', function () {
+      const methodName = 'getUTCWeek'
+      const datesToTest = [
+        '1995-12-17T03:24:00',
+        '2016-07-10T00:00:00',
+        '2016-07-16T23:59:59',
+        '2014-12-29T22:24:30',
+        '1996-04-15T02:53:13',
+        '2018-01-08T10:02:24',
+        '2013-02-13T13:24:42',
+        '2017-01-02T17:37:51',
+        '2017-01-09T17:15:46',
+        '2017-01-09T00:00:00',
+        '2017-01-09T23:59:59'
+      ]
+      const weekNumbers = [
+        50,
+        27,
+        28,
+        1,
+        16,
+        2,
+        7,
+        1,
+        2,
+        2,
+        2
+      ]
+
+      datesToTest.forEach(function (currentDate, i) {
+        const date = new ExtDate(currentDate)
+
+        expect(date[methodName]()).toBe(weekNumbers[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
   })
 
   it('should have all of its own instance methods tested', function () {
@@ -1209,6 +1285,9 @@ describe('The ExtDate class', function () {
 
     ownInstanceProps.forEach(function (prop) {
       if (typeof extDateInstance[prop] === 'function') {
+        if (!testedOwnMethods.proto[prop]) {
+          console.log(prop)
+        }
         expect(testedOwnMethods.proto[prop]).toBe(true)
       }
     })
