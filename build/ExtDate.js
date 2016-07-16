@@ -188,43 +188,19 @@
     },
 
     getWeek: function getWeek() {
-      var firstWeek = new ExtDate(this.getTime());
-      var daysSinceFirstWeek = this.getDayOfYear();
+      var day = this.getDayOfYear();
+      var weekDay = this.getDay() || 7;
+      var week = Math.floor((day - weekDay + 10) / 7);
 
-      firstWeek.setFirstWeekOfYear();
-
-      if (firstWeek.getMonth() === 0) {
-        daysSinceFirstWeek -= firstWeek.getDate();
-      } else {
-        var firstDayOfYear = new ExtDate(this.getTime());
-
-        firstDayOfYear.setFirstDayOfYear();
-        firstDayOfYear.setDate(firstDayOfYear.getDate() - 1);
-
-        daysSinceFirstWeek += firstDayOfYear.getDate() - firstWeek.getDate();
-      }
-
-      return Math.ceil(daysSinceFirstWeek / 7);
+      return week !== 53 ? week : 1;
     },
 
     getUTCWeek: function getUTCWeek() {
-      var firstWeek = new ExtDate(this.getTime());
-      var daysSinceFirstWeek = this.getUTCDayOfYear();
+      var day = this.getUTCDayOfYear();
+      var weekDay = this.getUTCDay() || 7;
+      var week = Math.floor((day - weekDay + 10) / 7);
 
-      firstWeek.setUTCFirstWeekOfYear();
-
-      if (firstWeek.getUTCMonth() === 0) {
-        daysSinceFirstWeek -= firstWeek.getUTCDate();
-      } else {
-        var firstDayOfYear = new ExtDate(this.getTime());
-
-        firstDayOfYear.setUTCFirstDayOfYear();
-        firstDayOfYear.setUTCDate(firstDayOfYear.getUTCDate() - 1);
-
-        daysSinceFirstWeek += firstDayOfYear.getUTCDate() - firstWeek.getUTCDate();
-      }
-
-      return Math.ceil(daysSinceFirstWeek / 7);
+      return week !== 53 ? week : 1;
     }
   };
 

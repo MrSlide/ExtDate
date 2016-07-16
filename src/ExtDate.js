@@ -332,23 +332,11 @@ const extDateMethods = {
    * var weekNumber = dateInstance.getWeek()
    */
   getWeek: function getWeek () {
-    const firstWeek = new ExtDate(this.getTime())
-    let daysSinceFirstWeek = this.getDayOfYear()
+    const day = this.getDayOfYear()
+    const weekDay = this.getDay() || 7
+    const week = Math.floor((day - weekDay + 10) / 7)
 
-    firstWeek.setFirstWeekOfYear()
-
-    if (firstWeek.getMonth() === 0) {
-      daysSinceFirstWeek -= firstWeek.getDate()
-    } else {
-      const firstDayOfYear = new ExtDate(this.getTime())
-
-      firstDayOfYear.setFirstDayOfYear()
-      firstDayOfYear.setDate(firstDayOfYear.getDate() - 1)
-
-      daysSinceFirstWeek += firstDayOfYear.getDate() - firstWeek.getDate()
-    }
-
-    return Math.ceil(daysSinceFirstWeek / 7)
+    return week !== 53 ? week : 1
   },
 
   /**
@@ -363,23 +351,11 @@ const extDateMethods = {
    * var weekNumber = dateInstance.getUTCWeek()
    */
   getUTCWeek: function getUTCWeek () {
-    const firstWeek = new ExtDate(this.getTime())
-    let daysSinceFirstWeek = this.getUTCDayOfYear()
+    const day = this.getUTCDayOfYear()
+    const weekDay = this.getUTCDay() || 7
+    const week = Math.floor((day - weekDay + 10) / 7)
 
-    firstWeek.setUTCFirstWeekOfYear()
-
-    if (firstWeek.getUTCMonth() === 0) {
-      daysSinceFirstWeek -= firstWeek.getUTCDate()
-    } else {
-      const firstDayOfYear = new ExtDate(this.getTime())
-
-      firstDayOfYear.setUTCFirstDayOfYear()
-      firstDayOfYear.setUTCDate(firstDayOfYear.getUTCDate() - 1)
-
-      daysSinceFirstWeek += firstDayOfYear.getUTCDate() - firstWeek.getUTCDate()
-    }
-
-    return Math.ceil(daysSinceFirstWeek / 7)
+    return week !== 53 ? week : 1
   }
 }
 
@@ -421,11 +397,11 @@ function extend (src, dest) {
  * var currentDateTime = ExtDate()
  *
  * @example
- * new ExtDate();
- * new ExtDate(547979648008);
- * new ExtDate('1995-12-17T03:24:00');
- * new ExtDate(1995, 11, 17);
- * new ExtDate(1995, 11, 17, 3, 24, 0);
+ * new ExtDate()
+ * new ExtDate(547979648008)
+ * new ExtDate('1995-12-17T03:24:00')
+ * new ExtDate(1995, 11, 17)
+ * new ExtDate(1995, 11, 17, 3, 24, 0)
  */
 export default function ExtDate (year, month, day, hour, minutes, seconds, milliseconds) {
   if (!(this instanceof ExtDate)) {
