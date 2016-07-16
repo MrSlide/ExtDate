@@ -1352,10 +1352,11 @@ describe('The ExtDate class', function () {
     const ownInstanceProps = Object.getOwnPropertyNames(extDateInstance)
 
     ownInstanceProps.forEach(function (prop) {
+      if (prop.substring(0, 1) === '_') {
+        return
+      }
+
       if (typeof extDateInstance[prop] === 'function') {
-        if (!testedOwnMethods.proto[prop]) {
-          console.log(prop)
-        }
         expect(testedOwnMethods.proto[prop]).toBe(true)
       }
     })

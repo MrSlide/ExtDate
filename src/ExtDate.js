@@ -13,6 +13,26 @@ const msInDay = 86400000
 
 const extDateMethods = {
   /**
+   * Sets the time of the day to 00:00:00.000 for a specified date according to local or univeral time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   */
+  _setStartOfDay: function _setStartOfDay (utc) {
+    utc = utc ? 'UTC' : ''
+
+    this[`set${utc}Milliseconds`](0)
+    this[`set${utc}Seconds`](0)
+    this[`set${utc}Minutes`](0)
+    this[`set${utc}Hours`](0)
+
+    return this.getTime()
+  },
+
+  /**
    * Sets the time of the day to 00:00:00.000 for a specified date according to local time.
    *
    * @memberof ExtDate
@@ -24,12 +44,7 @@ const extDateMethods = {
    * dateInstance.setStartOfDay()
    */
   setStartOfDay: function setStartOfDay () {
-    this.setMilliseconds(0)
-    this.setSeconds(0)
-    this.setMinutes(0)
-    this.setHours(0)
-
-    return this.getTime()
+    return this._setStartOfDay()
   },
 
   /**
@@ -44,10 +59,30 @@ const extDateMethods = {
    * dateInstance.setUTCStartOfDay()
    */
   setUTCStartOfDay: function setUTCStartOfDay () {
-    this.setUTCMilliseconds(0)
-    this.setUTCSeconds(0)
-    this.setUTCMinutes(0)
-    this.setUTCHours(0)
+    return this._setStartOfDay(true)
+  },
+
+  /**
+   * Sets the first day of the year for a specified date according to local or univeral time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   */
+  _setFirstDayOfYear: function _setFirstDayOfYear (year, utc) {
+    utc = utc ? 'UTC' : ''
+
+    this._setStartOfDay(!!utc)
+
+    this[`set${utc}Date`](1)
+    this[`set${utc}Month`](0)
+
+    if (year) {
+      this[`set${utc}FullYear`](year)
+    }
 
     return this.getTime()
   },
@@ -57,7 +92,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -65,16 +100,7 @@ const extDateMethods = {
    * dateInstance.setFirstDayOfYear(2016)
    */
   setFirstDayOfYear: function setFirstDayOfYear (year) {
-    this.setStartOfDay()
-
-    this.setDate(1)
-    this.setMonth(0)
-
-    if (year) {
-      this.setFullYear(year)
-    }
-
-    return this.getTime()
+    return this._setFirstDayOfYear(year)
   },
 
   /**
@@ -82,7 +108,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -90,16 +116,34 @@ const extDateMethods = {
    * dateInstance.setUTCFirstDayOfYear(2016)
    */
   setUTCFirstDayOfYear: function setUTCFirstDayOfYear (year) {
-    this.setUTCStartOfDay()
+    return this._setFirstDayOfYear(year, true)
+  },
 
-    this.setUTCDate(1)
-    this.setUTCMonth(0)
+  /**
+   * Returns the day of the year for a specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The day of the year for the specified date.
+   * @since 0.1.0
+   */
+  _getDayOfYear: function _getDayOfYear (utc) {
+    utc = utc ? 'UTC' : ''
 
-    if (year) {
-      this.setUTCFullYear(year)
+    const helperDate = new Date(this.getTime())
+
+    let dayCount = helperDate[`get${utc}Date`]()
+    let i = helperDate[`get${utc}Month`]()
+
+    while (i > 0) {
+      helperDate[`set${utc}Date`](0)
+      dayCount += helperDate[`get${utc}Date`]()
+
+      i--
     }
 
-    return this.getTime()
+    return dayCount
   },
 
   /**
@@ -114,19 +158,7 @@ const extDateMethods = {
    * var dayfOfYear = dateInstance.getDayOfYear()
    */
   getDayOfYear: function getDayOfYear () {
-    const helperDate = new Date(this.getTime())
-
-    let dayCount = helperDate.getDate()
-    let i = helperDate.getMonth()
-
-    while (i > 0) {
-      helperDate.setDate(0)
-      dayCount += helperDate.getDate()
-
-      i--
-    }
-
-    return dayCount
+    return this._getDayOfYear()
   },
 
   /**
@@ -141,19 +173,31 @@ const extDateMethods = {
    * var dayfOfYear = dateInstance.getUTCDayOfYear()
    */
   getUTCDayOfYear: function getUTCDayOfYear () {
-    const helperDate = new Date(this.getTime())
+    return this._getDayOfYear(true)
+  },
 
-    let dayCount = helperDate.getUTCDate()
-    let i = helperDate.getUTCMonth()
+  /**
+   * Sets the day of the year for a specified date according to local or universal time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   */
+  _setDayOfYear: function _setDayOfYear (day, year, utc) {
+    utc = utc ? 'UTC' : ''
 
-    while (i > 0) {
-      helperDate.setUTCDate(0)
-      dayCount += helperDate.getUTCDate()
-
-      i--
+    if (year) {
+      this[`set${utc}FullYear`](year)
     }
 
-    return dayCount
+    this._setFirstDayOfYear(year, !!utc)
+    this[`set${utc}Date`](day)
+
+    return this.getTime()
   },
 
   /**
@@ -170,14 +214,7 @@ const extDateMethods = {
    * dateInstance.setDayOfYear(45, 2016)
    */
   setDayOfYear: function setDayOfYear (day, year) {
-    if (year) {
-      this.setFullYear(year)
-    }
-
-    this.setFirstDayOfYear()
-    this.setDate(day)
-
-    return this.getTime()
+    return this._setDayOfYear(day, year)
   },
 
   /**
@@ -194,12 +231,41 @@ const extDateMethods = {
    * dateInstance.setUTCDayOfYear(45, 2016)
    */
   setUTCDayOfYear: function setUTCDayOfYear (day, year) {
-    if (year) {
-      this.setUTCFullYear(year)
+    return this._setDayOfYear(day, year, true)
+  },
+
+  /**
+   * Sets the first day of the first week of the year for a specified date according to local or univeral time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   */
+  _setFirstWeekOfYear: function _setFirstWeekOfYear (year, utc) {
+    utc = utc ? 'UTC' : ''
+
+    this._setFirstDayOfYear(year, !!utc)
+    let offset
+
+    // Weeks start on Mondays
+    let day = this[`get${utc}Day`]() - 1
+
+    if (day < 0) {
+      day = 6
     }
 
-    this.setUTCFirstDayOfYear()
-    this.setUTCDate(day)
+    // The first week of the year must include the 4th of January
+    if (day > 3) {
+      offset = 7 - day
+    } else {
+      offset = -day
+    }
+
+    // Adjust the date with the calculated offset
+    this[`set${utc}Date`](this[`get${utc}Date`]() + offset)
 
     return this.getTime()
   },
@@ -209,7 +275,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -217,27 +283,7 @@ const extDateMethods = {
    * dateInstance.setFirstWeekOfYear(2016)
    */
   setFirstWeekOfYear: function setFirstWeekOfYear (year) {
-    this.setFirstDayOfYear(year)
-    let offset
-
-    // Weeks start on Mondays
-    let day = this.getDay() - 1
-
-    if (day < 0) {
-      day = 6
-    }
-
-    // The first week of the year must include the 4th of January
-    if (day > 3) {
-      offset = (7 - day) * msInDay
-    } else {
-      offset = -day * msInDay
-    }
-
-    // Adjust the date with the calculated offset
-    this.setTime(this.getTime() + offset)
-
-    return this.getTime()
+    return this._setFirstWeekOfYear(year)
   },
 
   /**
@@ -253,25 +299,27 @@ const extDateMethods = {
    * dateInstance.setUTCFirstWeekOfYear(2016)
    */
   setUTCFirstWeekOfYear: function setUTCFirstWeekOfYear (year) {
-    this.setUTCFirstDayOfYear(year)
-    let offset
+    return this._setFirstWeekOfYear(year, true)
+  },
 
-    // Weeks start on Mondays
-    let day = this.getUTCDay() - 1
+  /**
+   * Sets the first day of a week number for a specified date according to local or universal time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {Number} week - An integer between 1 and 53, representing the week.
+   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   */
+  _setWeek: function _setWeek (week, year, utc) {
+    utc = utc ? 'UTC' : ''
 
-    if (day < 0) {
-      day = 6
-    }
+    const offset = (week - 1) * 7
 
-    // The first week of the year must include the 4th of January
-    if (day > 3) {
-      offset = (7 - day) * msInDay
-    } else {
-      offset = -day * msInDay
-    }
-
-    // Adjust the date with the calculated offset
-    this.setTime(this.getTime() + offset)
+    this._setFirstWeekOfYear(year, !!utc)
+    this[`set${utc}Date`](this[`get${utc}Date`]() + offset)
 
     return this.getTime()
   },
@@ -290,12 +338,7 @@ const extDateMethods = {
    * dateInstance.setWeek(2, 2016)
    */
   setWeek: function setWeek (week, year) {
-    const offset = (week - 1) * 7
-
-    this.setFirstWeekOfYear(year)
-    this.setDate(this.getDate() + offset)
-
-    return this.getTime()
+    return this._setWeek(week, year)
   },
 
   /**
@@ -312,12 +355,26 @@ const extDateMethods = {
    * dateInstance.setUTCWeek(2, 2016)
    */
   setUTCWeek: function setUTCWeek (week, year) {
-    const offset = (week - 1) * 7
+    return this._setWeek(week, year, true)
+  },
 
-    this.setUTCFirstWeekOfYear(year)
-    this.setUTCDate(this.getUTCDate() + offset)
+  /**
+   * Gets the week number of the specified date according to local or universal time.
+   *
+   * @memberof ExtDate
+   * @private
+   * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   */
+  _getWeek: function _getWeek (utc) {
+    utc = utc ? 'UTC' : ''
 
-    return this.getTime()
+    const day = this._getDayOfYear(!!utc)
+    const weekDay = this[`get${utc}Day`]() || 7
+    const week = Math.floor((day - weekDay + 10) / 7)
+
+    return week !== 53 ? week : 1
   },
 
   /**
@@ -332,11 +389,7 @@ const extDateMethods = {
    * var weekNumber = dateInstance.getWeek()
    */
   getWeek: function getWeek () {
-    const day = this.getDayOfYear()
-    const weekDay = this.getDay() || 7
-    const week = Math.floor((day - weekDay + 10) / 7)
-
-    return week !== 53 ? week : 1
+    return this._getWeek()
   },
 
   /**
@@ -351,11 +404,7 @@ const extDateMethods = {
    * var weekNumber = dateInstance.getUTCWeek()
    */
   getUTCWeek: function getUTCWeek () {
-    const day = this.getUTCDayOfYear()
-    const weekDay = this.getUTCDay() || 7
-    const week = Math.floor((day - weekDay + 10) / 7)
-
-    return week !== 53 ? week : 1
+    return this._getWeek(true)
   }
 }
 

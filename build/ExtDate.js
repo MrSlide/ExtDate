@@ -29,178 +29,161 @@
   var msInDay = 86400000;
 
   var extDateMethods = {
-    setStartOfDay: function setStartOfDay() {
-      this.setMilliseconds(0);
-      this.setSeconds(0);
-      this.setMinutes(0);
-      this.setHours(0);
+    _setStartOfDay: function _setStartOfDay(utc) {
+      utc = utc ? 'UTC' : '';
+
+      this['set' + utc + 'Milliseconds'](0);
+      this['set' + utc + 'Seconds'](0);
+      this['set' + utc + 'Minutes'](0);
+      this['set' + utc + 'Hours'](0);
 
       return this.getTime();
     },
 
+    setStartOfDay: function setStartOfDay() {
+      return this._setStartOfDay();
+    },
+
     setUTCStartOfDay: function setUTCStartOfDay() {
-      this.setUTCMilliseconds(0);
-      this.setUTCSeconds(0);
-      this.setUTCMinutes(0);
-      this.setUTCHours(0);
+      return this._setStartOfDay(true);
+    },
+
+    _setFirstDayOfYear: function _setFirstDayOfYear(year, utc) {
+      utc = utc ? 'UTC' : '';
+
+      this._setStartOfDay(!!utc);
+
+      this['set' + utc + 'Date'](1);
+      this['set' + utc + 'Month'](0);
+
+      if (year) {
+        this['set' + utc + 'FullYear'](year);
+      }
 
       return this.getTime();
     },
 
     setFirstDayOfYear: function setFirstDayOfYear(year) {
-      this.setStartOfDay();
-
-      this.setDate(1);
-      this.setMonth(0);
-
-      if (year) {
-        this.setFullYear(year);
-      }
-
-      return this.getTime();
+      return this._setFirstDayOfYear(year);
     },
 
     setUTCFirstDayOfYear: function setUTCFirstDayOfYear(year) {
-      this.setUTCStartOfDay();
+      return this._setFirstDayOfYear(year, true);
+    },
 
-      this.setUTCDate(1);
-      this.setUTCMonth(0);
+    _getDayOfYear: function _getDayOfYear(utc) {
+      utc = utc ? 'UTC' : '';
 
-      if (year) {
-        this.setUTCFullYear(year);
+      var helperDate = new Date(this.getTime());
+
+      var dayCount = helperDate['get' + utc + 'Date']();
+      var i = helperDate['get' + utc + 'Month']();
+
+      while (i > 0) {
+        helperDate['set' + utc + 'Date'](0);
+        dayCount += helperDate['get' + utc + 'Date']();
+
+        i--;
       }
 
-      return this.getTime();
+      return dayCount;
     },
 
     getDayOfYear: function getDayOfYear() {
-      var helperDate = new Date(this.getTime());
-
-      var dayCount = helperDate.getDate();
-      var i = helperDate.getMonth();
-
-      while (i > 0) {
-        helperDate.setDate(0);
-        dayCount += helperDate.getDate();
-
-        i--;
-      }
-
-      return dayCount;
+      return this._getDayOfYear();
     },
 
     getUTCDayOfYear: function getUTCDayOfYear() {
-      var helperDate = new Date(this.getTime());
-
-      var dayCount = helperDate.getUTCDate();
-      var i = helperDate.getUTCMonth();
-
-      while (i > 0) {
-        helperDate.setUTCDate(0);
-        dayCount += helperDate.getUTCDate();
-
-        i--;
-      }
-
-      return dayCount;
+      return this._getDayOfYear(true);
     },
 
-    setDayOfYear: function setDayOfYear(day, year) {
+    _setDayOfYear: function _setDayOfYear(day, year, utc) {
+      utc = utc ? 'UTC' : '';
+
       if (year) {
-        this.setFullYear(year);
+        this['set' + utc + 'FullYear'](year);
       }
 
-      this.setFirstDayOfYear();
-      this.setDate(day);
+      this._setFirstDayOfYear(year, !!utc);
+      this['set' + utc + 'Date'](day);
 
       return this.getTime();
     },
 
+    setDayOfYear: function setDayOfYear(day, year) {
+      return this._setDayOfYear(day, year);
+    },
+
     setUTCDayOfYear: function setUTCDayOfYear(day, year) {
-      if (year) {
-        this.setUTCFullYear(year);
+      return this._setDayOfYear(day, year, true);
+    },
+
+    _setFirstWeekOfYear: function _setFirstWeekOfYear(year, utc) {
+      utc = utc ? 'UTC' : '';
+
+      this._setFirstDayOfYear(year, !!utc);
+      var offset = void 0;
+
+      var day = this['get' + utc + 'Day']() - 1;
+
+      if (day < 0) {
+        day = 6;
       }
 
-      this.setUTCFirstDayOfYear();
-      this.setUTCDate(day);
+      if (day > 3) {
+        offset = 7 - day;
+      } else {
+        offset = -day;
+      }
+
+      this['set' + utc + 'Date'](this['get' + utc + 'Date']() + offset);
 
       return this.getTime();
     },
 
     setFirstWeekOfYear: function setFirstWeekOfYear(year) {
-      this.setFirstDayOfYear(year);
-      var offset = void 0;
-
-      var day = this.getDay() - 1;
-
-      if (day < 0) {
-        day = 6;
-      }
-
-      if (day > 3) {
-        offset = (7 - day) * msInDay;
-      } else {
-        offset = -day * msInDay;
-      }
-
-      this.setTime(this.getTime() + offset);
-
-      return this.getTime();
+      return this._setFirstWeekOfYear(year);
     },
 
     setUTCFirstWeekOfYear: function setUTCFirstWeekOfYear(year) {
-      this.setUTCFirstDayOfYear(year);
-      var offset = void 0;
+      return this._setFirstWeekOfYear(year, true);
+    },
 
-      var day = this.getUTCDay() - 1;
+    _setWeek: function _setWeek(week, year, utc) {
+      utc = utc ? 'UTC' : '';
 
-      if (day < 0) {
-        day = 6;
-      }
+      var offset = (week - 1) * 7;
 
-      if (day > 3) {
-        offset = (7 - day) * msInDay;
-      } else {
-        offset = -day * msInDay;
-      }
-
-      this.setTime(this.getTime() + offset);
+      this._setFirstWeekOfYear(year, !!utc);
+      this['set' + utc + 'Date'](this['get' + utc + 'Date']() + offset);
 
       return this.getTime();
     },
 
     setWeek: function setWeek(week, year) {
-      var offset = (week - 1) * 7;
-
-      this.setFirstWeekOfYear(year);
-      this.setDate(this.getDate() + offset);
-
-      return this.getTime();
+      return this._setWeek(week, year);
     },
 
     setUTCWeek: function setUTCWeek(week, year) {
-      var offset = (week - 1) * 7;
+      return this._setWeek(week, year, true);
+    },
 
-      this.setUTCFirstWeekOfYear(year);
-      this.setUTCDate(this.getUTCDate() + offset);
+    _getWeek: function _getWeek(utc) {
+      utc = utc ? 'UTC' : '';
 
-      return this.getTime();
+      var day = this._getDayOfYear(!!utc);
+      var weekDay = this['get' + utc + 'Day']() || 7;
+      var week = Math.floor((day - weekDay + 10) / 7);
+
+      return week !== 53 ? week : 1;
     },
 
     getWeek: function getWeek() {
-      var day = this.getDayOfYear();
-      var weekDay = this.getDay() || 7;
-      var week = Math.floor((day - weekDay + 10) / 7);
-
-      return week !== 53 ? week : 1;
+      return this._getWeek();
     },
 
     getUTCWeek: function getUTCWeek() {
-      var day = this.getUTCDayOfYear();
-      var weekDay = this.getUTCDay() || 7;
-      var week = Math.floor((day - weekDay + 10) / 7);
-
-      return week !== 53 ? week : 1;
+      return this._getWeek(true);
     }
   };
 
