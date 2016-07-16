@@ -318,6 +318,68 @@ const extDateMethods = {
     this.setUTCDate(this.getUTCDate() + offset)
 
     return this.getTime()
+  },
+
+  /**
+   * Gets the week number of the specified date according to local time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   *
+   * @example
+   * var weekNumber = dateInstance.getWeek()
+   */
+  getWeek: function getWeek () {
+    const firstWeek = new ExtDate(this.getTime())
+    let daysSinceFirstWeek = this.getDayOfYear()
+
+    firstWeek.setFirstWeekOfYear()
+
+    if (firstWeek.getMonth() === 0) {
+      daysSinceFirstWeek -= firstWeek.getDate()
+    } else {
+      const firstDayOfYear = new ExtDate(this.getTime())
+
+      firstDayOfYear.setFirstDayOfYear()
+      firstDayOfYear.setDate(firstDayOfYear.getDate() - 1)
+
+      daysSinceFirstWeek += firstDayOfYear.getDate() - firstWeek.getDate()
+    }
+
+    return Math.ceil(daysSinceFirstWeek / 7)
+  },
+
+  /**
+   * Gets the week number of the specified date according to universal time.
+   *
+   * @memberof ExtDate
+   * @public
+   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @since 0.1.0
+   *
+   * @example
+   * var weekNumber = dateInstance.getUTCWeek()
+   */
+  getUTCWeek: function getUTCWeek () {
+    const firstWeek = new ExtDate(this.getTime())
+    let daysSinceFirstWeek = this.getUTCDayOfYear()
+
+    firstWeek.setUTCFirstWeekOfYear()
+
+    if (firstWeek.getUTCMonth() === 0) {
+      daysSinceFirstWeek -= firstWeek.getUTCDate()
+    } else {
+      const firstDayOfYear = new ExtDate(this.getTime())
+
+      firstDayOfYear.setUTCFirstDayOfYear()
+      firstDayOfYear.setUTCDate(firstDayOfYear.getUTCDate() - 1)
+
+      daysSinceFirstWeek += firstDayOfYear.getUTCDate() - firstWeek.getUTCDate()
+    }
+
+    return Math.ceil(daysSinceFirstWeek / 7)
   }
 }
 
