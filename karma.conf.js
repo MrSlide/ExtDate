@@ -21,7 +21,7 @@ var karmaConfig = {
     suppressErrorSummary: false,
     suppressFailed: false,
     suppressPassed: false,
-    suppressSkipped: false
+    suppressSkipped: true
   },
   coverageReporter: {
     includeAllSources: true,

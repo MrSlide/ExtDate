@@ -934,6 +934,74 @@ describe('The ExtDate class', function () {
       testedOwnMethods.proto[methodName] = true
     })
 
+    it('getDayOfYear() should be able to get the ordinal day of the year of the date according to local time', function () {
+      const methodName = 'getDayOfYear'
+      const datesToTest = [
+        '1995-12-17T03:24:00.000Z',
+        '2016-07-10T00:00:00.000Z',
+        '2016-07-16T23:59:59.000Z',
+        '2014-12-29T22:24:30.000Z',
+        '1996-04-15T02:53:13.000Z',
+        '2018-01-08T10:02:24.000Z',
+        '2013-02-13T13:24:42.000Z',
+        '2017-01-02T17:37:51.000Z',
+        '2017-01-09T17:15:46.000Z'
+      ]
+      const dayNumbers = [
+        351,
+        192,
+        199,
+        363,
+        106,
+        8,
+        44,
+        2,
+        9
+      ]
+
+      datesToTest.forEach(function (currentDate, i) {
+        const date = new ExtDate(currentDate)
+
+        expect(date[methodName]()).toBe(dayNumbers[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
+    it('getUTCDayOfYear() should be able to get the ordinal day of the year of the date according to universal time', function () {
+      const methodName = 'getUTCDayOfYear'
+      const datesToTest = [
+        '1995-12-17T03:24:00.000Z',
+        '2016-07-10T00:00:00.000Z',
+        '2016-07-16T23:59:59.000Z',
+        '2014-12-29T22:24:30.000Z',
+        '1996-04-15T02:53:13.000Z',
+        '2018-01-08T10:02:24.000Z',
+        '2013-02-13T13:24:42.000Z',
+        '2017-01-02T17:37:51.000Z',
+        '2017-01-09T17:15:46.000Z'
+      ]
+      const dayNumbers = [
+        351,
+        192,
+        198,
+        363,
+        106,
+        8,
+        44,
+        2,
+        9
+      ]
+
+      datesToTest.forEach(function (currentDate, i) {
+        const date = new ExtDate(currentDate)
+
+        expect(date[methodName]()).toBe(dayNumbers[i])
+      })
+
+      testedOwnMethods.proto[methodName] = true
+    })
+
     it('setDayOfYear() should be able to set the date the given day of the year according to local time', function () {
       const methodName = 'setDayOfYear'
       const now = Date.now()
