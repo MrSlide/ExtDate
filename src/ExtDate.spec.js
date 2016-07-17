@@ -850,9 +850,10 @@ describe('The ExtDate class', function () {
       const now = Date.now()
       const extDate = new ExtDate(now)
 
-      extDate[methodName]()
+      const returnVal = extDate[methodName]()
 
       expect(extDate.getHours() + ':' + extDate.getMinutes() + ':' + extDate.getSeconds() + '.' + extDate.getMilliseconds()).toBe('0:0:0.0')
+      expect(returnVal).toBe(extDate.getTime())
 
       testedOwnMethods.proto[methodName] = true
     })
@@ -862,9 +863,10 @@ describe('The ExtDate class', function () {
       const now = Date.now()
       const extDate = new ExtDate(now)
 
-      extDate[methodName]()
+      const returnVal = extDate[methodName]()
 
       expect(extDate.getUTCHours() + ':' + extDate.getUTCMinutes() + ':' + extDate.getUTCSeconds() + '.' + extDate.getUTCMilliseconds()).toBe('0:0:0.0')
+      expect(returnVal).toBe(extDate.getTime())
 
       testedOwnMethods.proto[methodName] = true
     })
@@ -890,12 +892,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       yearsToTest.forEach(function (currentYear) {
-        extDate[methodName](currentYear)
+        const returnVal = extDate[methodName](currentYear)
+
         yearResult = extDate.getFullYear()
         monthResult = extDate.getMonth()
         dayResult = extDate.getDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe((currentYear || (new Date(now)).getFullYear()) + '-1-1')
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -922,13 +926,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       yearsToTest.forEach(function (currentYear) {
-        extDate[methodName](currentYear)
+        const returnVal = extDate[methodName](currentYear)
 
         yearResult = extDate.getUTCFullYear()
         monthResult = extDate.getUTCMonth()
         dayResult = extDate.getUTCDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe((currentYear || (new Date(now)).getUTCFullYear()) + '-1-1')
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -1036,12 +1041,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       daysToTest.forEach(function (currentCombo, i) {
-        extDate[methodName](currentCombo.day, currentCombo.year)
+        const returnVal = extDate[methodName](currentCombo.day, currentCombo.year)
+
         yearResult = extDate.getFullYear()
         monthResult = extDate.getMonth()
         dayResult = extDate.getDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(daysOfYear[i])
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -1081,12 +1088,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       daysToTest.forEach(function (currentCombo, i) {
-        extDate[methodName](currentCombo.day, currentCombo.year)
+        const returnVal = extDate[methodName](currentCombo.day, currentCombo.year)
+
         yearResult = extDate.getUTCFullYear()
         monthResult = extDate.getUTCMonth()
         dayResult = extDate.getUTCDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(daysOfYear[i])
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -1128,13 +1137,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       yearsToTest.forEach(function (currentYear, i) {
-        extDate[methodName](currentYear)
+        const returnVal = extDate[methodName](currentYear)
 
         yearResult = extDate.getFullYear()
         monthResult = extDate.getMonth()
         dayResult = extDate.getDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearFirstWeeks[i])
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -1176,13 +1186,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       yearsToTest.forEach(function (currentYear, i) {
-        extDate[methodName](currentYear)
+        const returnVal = extDate[methodName](currentYear)
 
         yearResult = extDate.getUTCFullYear()
         monthResult = extDate.getUTCMonth()
         dayResult = extDate.getUTCDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearFirstWeeks[i])
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -1217,13 +1228,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       yearsToTest.forEach(function (currentCombo, i) {
-        extDate[methodName](currentCombo.week, currentCombo.year)
+        const returnVal = extDate[methodName](currentCombo.week, currentCombo.year)
 
         yearResult = extDate.getFullYear()
         monthResult = extDate.getMonth()
         dayResult = extDate.getDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearWeeks[i])
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
@@ -1258,13 +1270,14 @@ describe('The ExtDate class', function () {
       let dayResult
 
       yearsToTest.forEach(function (currentCombo, i) {
-        extDate[methodName](currentCombo.week, currentCombo.year)
+        const returnVal = extDate[methodName](currentCombo.week, currentCombo.year)
 
         yearResult = extDate.getUTCFullYear()
         monthResult = extDate.getUTCMonth()
         dayResult = extDate.getUTCDate()
 
         expect(yearResult + '-' + (monthResult + 1) + '-' + dayResult).toBe(yearWeeks[i])
+        expect(returnVal).toBe(extDate.getTime())
       })
 
       testedOwnMethods.proto[methodName] = true
