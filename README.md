@@ -26,6 +26,37 @@ bower install ext-date
 ```
 
 
+## Usage
+
+### API
+
+#### ExtDate.prototype.getDayOfYear()
+
+Returns the day of the year for a specified date according to local time.
+
+```
+var dayfOfYear = dateInstance.getDayOfYear()
+```
+
+##### Returns
+
+{[Number]} - The day of the year for the specified date.
+
+---------------------------------------
+
+#### ExtDate.prototype.getUTCDayOfYear()
+
+Returns the day of the year for a specified date according to universal time.
+
+```
+var dayfOfYear = dateInstance.getUTCDayOfYear()
+```
+
+##### Returns
+
+{[Number]} - The day of the year for the specified date.
+
+
 
 ## Brower support
 
@@ -59,3 +90,7 @@ Created by Luís Rodrigues ([@MrSlide](https://github.com/MrSlide))
 Released under the [MIT](https://opensource.org/licenses/MIT) license
 
 Copyright (c) 2016 Luís Rodrigues
+
+
+
+[Number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
