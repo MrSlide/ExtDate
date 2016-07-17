@@ -11,24 +11,26 @@ Native JavaScript Date object extended with new useful methods.
 
 
 
-## Warning
+## Installation
 
-This project is still in early development stage and should not be used in production code.
-
-
-
-## Install
-
-You can install ExtDate via [Bower](http://bower.io/).
+### Via [Bower](http://bower.io/)
 
 ```
 bower install ext-date
 ```
 
+### Via [NPM](https://www.npmjs.com/)
+
+```
+npm install ext-date
+```
+
 
 ## Usage
 
-### API
+
+
+## API
 
 The ExtDate API tries to mimic the native [Date] object as much as possible. All the static methods and instance methods available in the native [Date] object will be available through ExtDate, as long as they are supported by the browser.
 
@@ -37,17 +39,22 @@ For documentation on the native methods, please see <https://developer.mozilla.o
 For a consistent behaviour, if ExtDate has any method that also exists in the native [Date] object, the ExtDate method will take precedence. ExtDate does not modify the native [Date] object, so you can still access the any native method by using the native [Date] directly instead of ExtDate.
 
 
-#### ExtDate()
+
+### ExtDate()
 
 Returns a string representation of the current date and time.
 
-##### Returns
+**Parameters**
+
+See <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date>.
+
+**Returns**
 
 [String] A string representation of the current date and time. Equivalent to `(new Date().toString())`.
 
----------------------------------------
 
-#### ExtDate.prototype.constructor()
+
+### ExtDate.prototype.constructor()
 
 Creates an instance of a [Date] object extended with the ExtDate methods.
 The ExtDate constructor uses the same syntax as the native [Date] object constructor. See <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date> for more details and parameter options.
@@ -61,13 +68,17 @@ var dateInstance = new ExtDate(1995, 11, 17)
 var dateInstance = new ExtDate(1995, 11, 17, 3, 24, 0)
 ```
 
-##### Returns
+**Parameters**
+
+See <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date>.
+
+**Returns**
 
 [Date] A new Date instance extended with the ExtDate methods.
 
----------------------------------------
 
-#### ExtDate.prototype.getDayOfYear()
+
+### ExtDate.prototype.getDayOfYear()
 
 Returns the day of the year for a specified date according to local time.
 
@@ -76,13 +87,13 @@ Returns the day of the year for a specified date according to local time.
 var dayfOfYear = dateInstance.getDayOfYear()
 ```
 
-##### Returns
+**Returns**
 
 [Number] The day of the year for the specified date.
 
----------------------------------------
 
-#### ExtDate.prototype.getUTCDayOfYear()
+
+### ExtDate.prototype.getUTCDayOfYear()
 
 Returns the day of the year for a specified date according to universal time.
 
@@ -91,13 +102,13 @@ Returns the day of the year for a specified date according to universal time.
 var dayfOfYear = dateInstance.getUTCDayOfYear()
 ```
 
-##### Returns
+**Returns**
 
 [Number] The day of the year for the specified date.
 
----------------------------------------
 
-#### ExtDate.prototype.getWeek()
+
+### ExtDate.prototype.getWeek()
 
 Gets the week number of the specified date according to local time.
 
@@ -106,13 +117,13 @@ Gets the week number of the specified date according to local time.
 var weekNumber = dateInstance.getWeek()
 ```
 
-##### Returns
+**Returns**
 
 [Number] The ISO week number.
 
----------------------------------------
 
-#### ExtDate.prototype.getUTCWeek()
+
+### ExtDate.prototype.getUTCWeek()
 
 Gets the week number of the specified date according to universal time.
 
@@ -121,13 +132,13 @@ Gets the week number of the specified date according to universal time.
 var weekNumber = dateInstance.getUTCWeek()
 ```
 
-##### Returns
+**Returns**
 
 [Number] The ISO week number.
 
----------------------------------------
 
-#### ExtDate.prototype.setDayOfYear([Number] day[, [Number] year])
+
+### ExtDate.prototype.setDayOfYear([Number] day[, [Number] year])
 
 Sets the day of the year for a specified date according to local time.
 
@@ -136,13 +147,20 @@ Sets the day of the year for a specified date according to local time.
 dateInstance.setDayOfYear(45, 2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default              | Description                                                                                         |
+|------|----------|----------|----------------------|-----------------------|
+| day  | [Number] | `true`   |                      | An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year. |
+| year | [Number] | `false`  | `this.getFullYear()` | If not specified, the year of the specified date will remain unchanged.                             |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setUTCDayOfYear([Number] day[, [Number] year])
+
+### ExtDate.prototype.setUTCDayOfYear([Number] day[, [Number] year])
 
 Sets the day of the year for a specified date according to universal time.
 
@@ -151,13 +169,20 @@ Sets the day of the year for a specified date according to universal time.
 dateInstance.setUTCDayOfYear(45, 2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default                 | Description                                                                                         |
+|------|----------|----------|-------------------------|-----------------------|
+| day  | [Number] | `true`   |                         | An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year. |
+| year | [Number] | `false`  | `this.getUTCFullYear()` | If not specified, the year of the specified date will remain unchanged.                             |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setFirstDayOfYear([[Number] year])
+
+### ExtDate.prototype.setFirstDayOfYear([[Number] year])
 
 Sets the first day of the year for a specified date according to local time.
 
@@ -166,13 +191,19 @@ Sets the first day of the year for a specified date according to local time.
 dateInstance.setFirstDayOfYear(2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default              | Description                                                             |
+|------|----------|----------|----------------------|----------------------------------|
+| year | [Number] | `false`  | `this.getFullYear()` | If not specified, the year of the specified date will remain unchanged. |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setUTCFirstDayOfYear([[Number] year])
+
+### ExtDate.prototype.setUTCFirstDayOfYear([[Number] year])
 
 Sets the first day of the year for a specified date according to universal time.
 
@@ -181,13 +212,19 @@ Sets the first day of the year for a specified date according to universal time.
 dateInstance.setUTCFirstDayOfYear(2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default                 | Description                                                             |
+|------|----------|----------|-------------------------|----------------------------------|
+| year | [Number] | `false`  | `this.getUTCFullYear()` | If not specified, the year of the specified date will remain unchanged. |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setFirstWeekOfYear([[Number] year])
+
+### ExtDate.prototype.setFirstWeekOfYear([[Number] year])
 
 Sets the first day of the first week of the year for a specified date according to local time.
 
@@ -196,13 +233,19 @@ Sets the first day of the first week of the year for a specified date according 
 dateInstance.setFirstWeekOfYear(2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default              | Description                                                             |
+|------|----------|----------|----------------------|----------------------------------|
+| year | [Number] | `false`  | `this.getFullYear()` | If not specified, the year of the specified date will remain unchanged. |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setUTCFirstWeekOfYear([[Number] year])
+
+### ExtDate.prototype.setUTCFirstWeekOfYear([[Number] year])
 
 Sets the first day of the first week of the year for a specified date according to universal time.
 
@@ -211,13 +254,19 @@ Sets the first day of the first week of the year for a specified date according 
 dateInstance.setUTCFirstWeekOfYear(2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default                 | Description                                                             |
+|------|----------|----------|-------------------------|----------------------------------|
+| year | [Number] | `false`  | `this.getUTCFullYear()` | If not specified, the year of the specified date will remain unchanged. |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setStartOfDay()
+
+### ExtDate.prototype.setStartOfDay()
 
 Sets the time of the day to 00:00:00.000 for a specified date according to local time.
 
@@ -226,13 +275,13 @@ Sets the time of the day to 00:00:00.000 for a specified date according to local
 dateInstance.setStartOfDay()
 ```
 
-##### Returns
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setUTCStartOfDay()
+
+### ExtDate.prototype.setUTCStartOfDay()
 
 Sets the time of the day to 00:00:00.000 for a specified date according to universal time.
 
@@ -241,13 +290,13 @@ Sets the time of the day to 00:00:00.000 for a specified date according to unive
 dateInstance.setUTCStartOfDay()
 ```
 
-##### Returns
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setWeek([Number] week[, [Number] year])
+
+### ExtDate.prototype.setWeek([Number] week[, [Number] year])
 
 Sets the first day of a week number for a specified date according to local time.
 
@@ -256,13 +305,20 @@ Sets the first day of a week number for a specified date according to local time
 dateInstance.setWeek(2, 2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default              | Description                                                             |
+|------|----------|----------|----------------------|----------------------------------|
+| week | [Number] | `true`   |                      | An integer between 1 and 53, representing the week.                     |
+| year | [Number] | `false`  | `this.getFullYear()` | If not specified, the year of the specified date will remain unchanged. |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
----------------------------------------
 
-#### ExtDate.prototype.setUTCWeek([Number] week[, [Number] year])
+
+### ExtDate.prototype.setUTCWeek([Number] week[, [Number] year])
 
 Sets the first day of a week number for a specified date according to universal time.
 
@@ -271,7 +327,14 @@ Sets the first day of a week number for a specified date according to universal 
 dateInstance.setUTCWeek(2, 2016)
 ```
 
-##### Returns
+**Parameters**
+
+| Name | Type     | Required | Default                 | Description                                                             |
+|------|----------|----------|-------------------------|----------------------------------|
+| week | [Number] | `true`   |                         | An integer between 1 and 53, representing the week.                     |
+| year | [Number] | `false`  | `this.getUTCFullYear()` | If not specified, the year of the specified date will remain unchanged. |
+
+**Returns**
 
 [Number] The number of milliseconds since 1 January 1970 00:00:00 UTC.
 
