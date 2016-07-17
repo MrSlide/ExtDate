@@ -3,7 +3,6 @@
 Native JavaScript Date object extended with new useful methods.
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
-[![Github All Releases](https://img.shields.io/github/downloads/MrSlide/ExtDate/total.svg?style=flat-square)](https://github.com/MrSlide/ExtDate)
 [![latest-release](https://img.shields.io/github/release/MrSlide/ExtDate.svg?style=flat-square)](https://github.com/MrSlide/ExtDate/tree/master)
 [![Travis branch](https://img.shields.io/travis/MrSlide/ExtDate/master.svg?style=flat-square)](https://travis-ci.org/MrSlide/ExtDate)
 [![Coverage Status](https://img.shields.io/coveralls/MrSlide/ExtDate/master.svg?style=flat-square)](https://coveralls.io/github/MrSlide/ExtDate?branch=master)
@@ -46,21 +45,6 @@ ExtDate, although not tested in all of them, was created using features supporte
 ## Support
 
 If you want to request new features or find any bugs, please open a ticket on the [issues](https://github.com/MrSlide/ExtDate/issues) page and I'll review it as soon as possible.
-
-
-
-### Contributing
-
-You are welcome to contribute to the project with bug fixes, improvements and feature additions.
-Please always follow the project guidelines when submitting pull requests.
-
-- There is great focus on keeping the library as small as possible.
-- The project uses [Standard](http://standardjs.com/) to impose a coding style. No linting errors will be accepted.
-- Use [ESDoc](https://esdoc.org/) tags to document the code.
-- Unit tests should be created or updated for all code, with an aim of 100% coverage.
-- If creating a new feature, be sure to document it.
-- If fixing a bug, create a unit test that replicates the issue.
-- Always merge `develop` into your branch before creating a pull request.
 
 
 
