@@ -25,9 +25,6 @@
     value: true
   });
   exports.default = ExtDate;
-
-  var msInDay = 86400000;
-
   var extDateMethods = {
     _setStartOfDay: function _setStartOfDay(utc) {
       utc = utc ? 'UTC' : '';

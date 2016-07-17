@@ -8,9 +8,6 @@
  * @license MIT
  */
 
-// Number of milliseconds in a single day
-const msInDay = 86400000
-
 const extDateMethods = {
   /**
    * Sets the time of the day to 00:00:00.000 for a specified date according to local or univeral time.
