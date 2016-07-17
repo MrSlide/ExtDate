@@ -11,6 +11,37 @@ Native JavaScript Date object extended with new useful methods.
 
 
 
+- [Installation](#installation)
+  - [Via Bower](#via-bower)
+  - [Via NPM](#via-npm)
+- [Usage](#usage)
+  - [Via ES6 syntax](#via-es6-syntax)
+  - [Via CommonJS syntax](#via-commonjs-syntax)
+  - [Via the script tag](#via-the-script-tag)
+- [API](#api)
+  - [ExtDate()](#extdate-1)
+  - [ExtDate.prototype.constructor()](#extdateprototypeconstructor)
+  - [ExtDate.prototype.getDayOfYear()](#extdateprototypegetdayofyear)
+  - [ExtDate.prototype.getUTCDayOfYear()](#extdateprototypegetutcdayofyear)
+  - [ExtDate.prototype.getWeek()](#extdateprototypegetweek)
+  - [ExtDate.prototype.getUTCWeek()](#extdateprototypegetutcweek)
+  - [ExtDate.prototype.setDayOfYear()](#extdateprototypesetdayofyearnumber-day-number-year)
+  - [ExtDate.prototype.setUTCDayOfYear()](#extdateprototypesetutcdayofyearnumber-day-number-year)
+  - [ExtDate.prototype.setFirstDayOfYear()](#extdateprototypesetfirstdayofyearnumber-year)
+  - [ExtDate.prototype.setUTCFirstDayOfYear()](#extdateprototypesetutcfirstdayofyearnumber-year)
+  - [ExtDate.prototype.setFirstWeekOfYear()](#extdateprototypesetfirstweekofyearnumber-year)
+  - [ExtDate.prototype.setUTCFirstWeekOfYear()](#extdateprototypesetutcfirstweekofyearnumber-year)
+  - [ExtDate.prototype.setStartOfDay()](#extdateprototypesetstartofday)
+  - [ExtDate.prototype.setUTCStartOfDay()](#extdateprototypesetutcstartofday)
+  - [ExtDate.prototype.setWeek()](#extdateprototypesetweeknumber-week-number-year)
+  - [ExtDate.prototype.setUTCWeek()](#extdateprototypesetutcweeknumber-week-number-year)
+- [Brower support](#browser-support)
+- [Support](#support)
+- [Authors and Contributors](#authors-and-contributers)
+- [License and copyright](#license-and-copyright)
+
+
+
 ## Installation
 
 ### Via [Bower](http://bower.io/)
@@ -27,6 +58,28 @@ npm install ext-date
 
 
 ## Usage
+
+ExtDate is an [UMD](https://github.com/umdjs/umd) module. You can load it into your application either by importing the module, or loading the script in your page.
+
+If you are importing the ExtDate module via [Webpack](https://webpack.github.io/), [Browserify](http://browserify.org/) or similar, make sure that the module name `ext-date` is being resolved correctly to the [Bower](http://bower.io/) or [NPM](https://www.npmjs.com/) packages folder.
+
+### Via ES6 syntax
+
+```
+import ExtDate from 'ext-date'
+```
+
+### Via CommonJS syntax
+
+```
+var ExtDate = require('ext-date')
+```
+
+### Via the script tag
+
+```
+<script src="/scripts/ExtDate.js"></script> // Change the path as necessary
+```
 
 
 
