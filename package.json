@@ -1,5 +1,28 @@
 {
-  "private": true,
+  "name": "ext-date",
+  "description": "Native JavaScript Date object extended with new useful methods.",
+  "keywords": [
+    "date",
+    "manipulation",
+    "manipulate",
+    "extended",
+    "extend",
+    "utilities",
+    "utils"
+  ],
+  "bugs": {
+    "url": "https://github.com/MrSlide/ExtDate/issues"
+  },
+  "license": "MIT",
+  "version": "0.1.0",
+  "files": [
+    "src/ExtDate.js"
+  ],
+  "main": "src/ExtDate.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/MrSlide/ExtDate.git"
+  },
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.2",
