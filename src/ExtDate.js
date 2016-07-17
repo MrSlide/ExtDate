@@ -203,7 +203,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -220,7 +220,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {Number} day - An integer between 1 and 365 (or 366, if the year is a leap year) representing the day of the year.
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -288,7 +288,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -305,7 +305,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @private
    * @param {Number} week - An integer between 1 and 53, representing the week.
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
@@ -327,7 +327,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {Number} week - An integer between 1 and 53, representing the week.
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -344,7 +344,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @public
    * @param {Number} week - An integer between 1 and 53, representing the week.
-   * @param {!Number} [year] - If not specified, the year of the specified date will remain unchanged.
+   * @param {?Number} [year] - If not specified, the year of the specified date will remain unchanged.
    * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
    * @since 0.1.0
    *
@@ -361,7 +361,7 @@ const extDateMethods = {
    * @memberof ExtDate
    * @private
    * @param {?Boolean} [utc] - Set to `true` to perform operations in univeral time.
-   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @return {Number} - The ISO week number.
    * @since 0.1.0
    */
   _getWeek: function _getWeek (utc) {
@@ -379,7 +379,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @return {Number} - The ISO week number.
    * @since 0.1.0
    *
    * @example
@@ -394,7 +394,7 @@ const extDateMethods = {
    *
    * @memberof ExtDate
    * @public
-   * @return {Number} - The number of milliseconds since 1 January 1970 00:00:00 UTC.
+   * @return {Number} - The ISO week number.
    * @since 0.1.0
    *
    * @example
