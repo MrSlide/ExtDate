@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [v1.0.0] - 2016-08-19
+
+### Breaking changes
+
+- Modified the bundled module to export the ExtDate class directly to the ExtDate global variable.
+
+
 ## [v0.1.0] - 2016-07-17
 
 ### Added
@@ -17,4 +24,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Latest]: https://github.com/MrSlide/ExtDate/tree/master
 [Unreleased]: https://github.com/MrSlide/ExtDate/tree/develop
+[v1.0.0]: https://github.com/MrSlide/ExtDate/tree/v1.0.0
 [v0.1.0]: https://github.com/MrSlide/ExtDate/tree/v0.1.0
