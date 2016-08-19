@@ -4,7 +4,7 @@
  * @name ExtDate
  * @desc Extends the native Date object with new useful methods.
  * @author Luis Rodrigues (http://www.luisrodriguesweb.com)
- * @version 0.1.0
+ * @version 1.0.0
  * @license MIT
  */
 
