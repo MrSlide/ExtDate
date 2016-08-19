@@ -39,17 +39,4 @@ gulp.task('compileJs', function (cb) {
     console.error(err)
     process.exit(1)
   })
-
-  // return gulp.src('./' + configVars['js']['srcPath'] + configVars['js']['entryFile'])
-  //   .pipe(sourcemaps.init())
-  //   .pipe(babel({
-  //     presets: ['es2015-loose'],
-  //     plugins: [
-  //       'transform-object-assign',
-  //       'transform-es2015-modules-umd'
-  //     ],
-  //     comments: false
-  //   }))
-  //   .pipe(sourcemaps.write('.'))
-  //   .pipe(gulp.dest('./' + configVars['global']['outputPath'] + configVars['js']['outputPath']))
 })
